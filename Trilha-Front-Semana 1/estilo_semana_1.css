@@ -1,0 +1,58 @@
+*{
+    padding: 0;
+    margin: 0;
+    outline:0;    
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+}
+
+
+
+.Projeto{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.boxtop{
+    background-color: #FF6600;
+    height: 64px;
+    width:465px;
+    text-align:center;
+    border-top-right-radius:22px;
+    border-top-left-radius:22px;
+
+}
+
+.boxbotton{
+    background-color: #001830;
+    height: 165px;
+    width: 465px;
+    border-bottom-right-radius: 22px;
+    border-bottom-left-radius: 22px;
+    
+}
+
+.titulo{
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight:700;
+    padding-top: 14px;
+    padding-bottom:14px ;
+}
+
+.equipe{
+    color: #FFFFFF;
+    font-size:20px ;
+    height: 120px;
+    width: 113px;
+    font-weight: 500;
+    padding-top: 22.5px;
+    padding-left: 26px;
+    padding-bottom:22.5px;
+}
