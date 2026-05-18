@@ -1,0 +1,82 @@
+{
+  "presidentes": [
+    {
+    
+      "nome": "Carlos Henrique Almeida",
+      "cargo": "Presidente Executivo",
+      "idade": 52,
+      "email": "carlos.almeida@inovatech.com",
+      "salario": 50000,
+      "ativo": true
+    },
+    {
+    
+      "nome": "Fernanda Souza Lima",
+      "cargo": "Presidente Financeira",
+      "idade": 45,
+      "email": "fernanda.lima@inovatech.com",
+      "salario": 47000,
+      "ativo": true
+    }
+  ],
+  "diretores": [
+    {
+   
+      "nome": "Ricardo Mendes Rocha",
+      "cargo": "Diretor de Tecnologia",
+      "idade": 39,
+      "email": "ricardo.rocha@inovatech.com",
+      "salario": 32000,
+      "ativo": true
+    },
+    {
+    
+      "nome": "Juliana Martins Costa",
+      "cargo": "Diretora de RH",
+      "idade": 37,
+      "email": "juliana.costa@inovatech.com",
+      "salario": 28000,
+      "ativo": true
+    }
+  ],
+  "assessores": [
+    {
+    
+      "nome": "Paulo César Ribeiro",
+      "cargo": "Assessor Executivo",
+      "idade": 31,
+      "email": "paulo.ribeiro@inovatech.com",
+      "salario": 12000,
+      "ativo": true
+    },
+    {
+ 
+      "nome": "Amanda Ferreira Lopes",
+      "cargo": "Assessora Financeira",
+      "idade": 29,
+      "email": "amanda.lopes@inovatech.com",
+      "salario": 11500,
+      "ativo": false
+    }
+  ],
+  "estagiarios": [
+    {
+
+      "nome": "Lucas Oliveira Santos",
+      "cargo": "Estagiário de Desenvolvimento",
+      "idade": 21,
+      "email": "lucas.santos@inovatech.com",
+      "bolsa_auxilio": 1800,
+      "ativo": true
+    },
+    {
+
+      "nome": "Marina Alves Souza",
+      "cargo": "Estagiária de Marketing",
+      "idade": 22,
+      "email": "marina.souza@inovatech.com",
+      "bolsa_auxilio": 1700,
+      "ativo": true
+    }
+  ]
+}
