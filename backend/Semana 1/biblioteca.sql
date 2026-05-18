@@ -21,7 +21,7 @@ create table emprestimos(
 	id int primary key auto_increment,
     usuario_id int not null,
     livro_id int not null,
-    data_emprestimo date not null,
+    data_emprestimo date not null default current_date,
     data_devolucao date,
     data_prev_devolução date not null,
     
@@ -41,11 +41,3 @@ create table emprestimos(
         on delete restrict
         on update cascade
 );
-
-insert into usuarios (nome, email)
-values('Gustavo Leal', 'gustavo@gmail.com');
-
-insert into livros(titulo, autor, ano, quantidade)
-values('The Walking Dead', 'Robert Kirkman', '2003', 10);
-
-select * from livros
