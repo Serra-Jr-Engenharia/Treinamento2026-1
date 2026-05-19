@@ -1,0 +1,49 @@
+/* Isso se chama reset básico, para remover margens padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card {
+    width: 465px;
+}
+
+.card-topo {
+    background-color: #FF6600;
+    height: 64px;
+    border-radius: 22px 22px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-topo h1 {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.card-corpo {
+    background-color: #001830;
+    min-height: 165px;
+    border-radius: 0px 0px 22px 22px;
+    list-style: none;
+    padding: 23px 26px;
+}
+
+.card-corpo li {
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+}
