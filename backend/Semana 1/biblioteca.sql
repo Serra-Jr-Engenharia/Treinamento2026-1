@@ -21,7 +21,7 @@ create table emprestimos(
 	id int primary key auto_increment,
     usuario_id int not null,
     livro_id int not null,
-    data_emprestimo date default current_date not null,
+    data_emprestimo date not null default current_date,
     data_devolucao date,
     data_prev_devolução date not null,
     
