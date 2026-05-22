@@ -1,0 +1,117 @@
+*{
+  color: #FFFFFF;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.container{
+  display: grid;
+  justify-content: center;
+}
+
+.card{
+  margin-top: 200px;
+  margin-bottom: 33px;
+  display: grid;
+  width: 763px;
+  
+}
+
+.card-title{
+  height: 64px;
+  background-color:#FF6600;
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+}
+
+.card-title-text{
+  margin: 0px;
+  padding: 14px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.card-counter{
+  background-color: #001830;
+  border-end-end-radius: 22px;
+  border-end-start-radius: 22px;
+  display: grid;
+  place-items: center;
+  height: 165px;
+}
+
+.card-counter-number{
+  margin: 0px;
+  font-size: 64px;
+  font-weight: 500;
+}
+
+.button{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.button-rmv{
+  background-color: #FF6600;
+  border: none;
+  border-radius: 22px;
+  font-size: 24px;
+  width: 228px;
+  height: 58px;
+  display: grid;
+  place-content: center;
+  justify-self: start;
+   user-select: none;
+}
+
+.button-add{
+  background-color: #FF6600;
+  border: none;
+  border-radius: 22px;
+  font-size: 24px;
+  width: 228px;
+  height: 58px;
+  display: grid;
+  place-content: center;
+  justify-self: end;
+  user-select: none;
+}
+
+.cargos-title-list{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  place-items: center;
+  background-color: #FF6600;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 50px;
+  border-radius: 22px 22px 0px 0px;
+}
+
+.cargos-counter-list{
+  margin: 0px;
+  background-color: #001830;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  place-items: center;
+  list-style: none;
+  border-radius: 0px 0px 22px 22px;
+  padding: 0px;
+}
+
+.cargos-title-list > *:hover{
+  color: #001830;
+  user-select: none;
+}
+
+.bloqueado{
+  pointer-events: none;
+  cursor: default;
+}
