@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Tela 2.2
+    </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container">
+
+        <h1 class="container-up">
+            Cadastro
+            <img src="Logo SerraJr 1.png" alt="Logo Serra Jr">
+        </h1>
+        
+        <div >
+            <div class="container-bottom">
+                <ul>    
+                    <li>    
+                        Email:
+                        <input type="email" placeholder="exemplo@123.com">
+                    </li>
+
+                    <li>
+                        Senha:
+
+                        <div class="input-box">
+                            <input id="senha" type="password" placeholder="exemplo123">
+
+                            <span class="toggle" onclick="mostrarSenha('senha')">
+                                👁
+                            </span>
+                        </div>
+                    </li>
+
+                    <li>
+                        Confirmar Senha:
+
+                        <div class="input-box">
+                            <input id="confirmarSenha" type="password" placeholder="exemplo123">
+
+                            <span class="toggle" onclick="mostrarSenha('confirmarSenha')">
+                                👁
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="container-button">
+                    <button id="button" onclick="criar()">
+                        Criar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="alerta" class="alerta">
+        <p id="mensagem"></p>
+
+        <button onclick="fecharAlerta()">
+            OK
+        </button>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+
+</html>
