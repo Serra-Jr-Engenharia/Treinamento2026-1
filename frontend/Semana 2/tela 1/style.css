@@ -1,0 +1,55 @@
+body {
+    font-family: Poppins, sans-serif; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f6efef; 
+    margin: 0;
+}
+
+.card {
+    width: 763px; 
+    
+    border-radius: 22px; 
+}
+
+
+.card-topo {
+    background-color: #ff6a00;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 15px 0;
+    border-radius: 22px 22px 0 0; 
+}
+.card-corpo {
+    background-color: #001830; 
+    color: #ffffff;
+    height: 165px; 
+    border-radius: 0 0 22px 22px; 
+    text-align: center;
+    padding: 25px 40px; 
+    box-sizing: border-box; 
+}
+
+#add, #remove {
+    width: 228px;
+    height: 58px;
+    border-radius: 22px;
+    background-color: #ff6a00;
+    color: #ffffff;
+    border: 0;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.botoes{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-top: 20px;
+}
+
