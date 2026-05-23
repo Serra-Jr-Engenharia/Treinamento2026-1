@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color:#f0f0f0
+}
+
+body{
+    background-color: #f0f0f0;
+    font-family: poppins, sans-serif;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 25px;
+}
+
+#card{
+    width: 763px;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#cardtop{
+    height: 64px;
+    background: #ff6600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 24px;
+    font-weight: 700;
+}
+
+#numero{
+    height: 165px;
+    background: #001830;
+    padding: 22px;
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 150%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .botoes{
+    
+    display: flex;
+    justify-content: center;
+    align-items: space-between;
+    gap:307px;
+    
+    }
+
+    button{
+    width: 228px;
+    height: 58px;
+
+    background-color: #ff6600;
+    color: white;
+
+    border: none;
+
+    padding: 15px 40px;
+
+    border-radius: 22px;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button:hover{
+    transform: scale(1.05);
+    color: #001830;
+    background-color: #ff893b;
+}

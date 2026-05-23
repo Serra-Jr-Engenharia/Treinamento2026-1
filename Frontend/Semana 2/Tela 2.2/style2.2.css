@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins, sans-serif;
+}
+
+body{
+    background-color: #f0f0f0;
+    font-family: poppins, sans-serif;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 25px;
+}
+
+#card{
+    width: 763px;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#cardtop{
+    color: #f0f0f0;
+    height: 64px;
+    padding: 0 20px;
+    background: #ff6600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 24px;
+    font-weight: 700;
+}
+
+#cardbd {
+    height: 421px;
+    width: 763px;
+    background: #001830;
+
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.botao{
+  
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    
+    }
+    
+.logo {
+    width: 52px;
+    height: 51px;
+    }
+
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    color: white;
+    font-size: 14px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px; 
+    font-size: 16px;
+    color: #9B9B9B;
+    background-color: white;
+    outline: none;
+}
+
+.campo input::placeholder {
+    color: #9B9B9B;
+}
+
+button{
+    height: 58px;
+    width:228px;
+    background-color: #ff6600;
+    color: white;
+
+    border: none;
+
+    padding: 15px 40px;
+
+    border-radius: 22px;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button:hover{
+    transform: scale(1.05);
+    color: #001830;
+    background-color: #ff893b;
+}
+
+
+
