@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column  ;
+
+
+}
+
+.Projeto {
+    width: 763px;
+    height: 320px;
+    position: relative;
+}
+
+
+
+
+.BoxTop {
+
+    background-color: #FF6600;
+    width: 763px;
+    height: 64px;
+    border-radius: 22px 22px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.BoxTop h1 {
+
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.BoxBotton {
+
+    background-color: #001830;
+    width: 763px;
+    height: 165px;
+    border-radius: 0px 0px 22px 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.BoxBotton p{
+
+    color: #FFFFFF;
+    font-size: 64px;
+    font-weight: 500;
+
+
+}
+.Botões{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.Remover{
+
+    background-color: #FF6600;
+    width: 228px;
+    height: 58px;
+    border-radius: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+
+}
+
+.Remover p{
+
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 700;
+
+
+}
+
+
+.Adicionar{
+    background-color: #FF6600;
+    width: 228px;
+    height: 58px;
+    border-radius: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.Adicionar p{
+
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 700;
+
+
+}
+
+.Reset{
+
+    background-color: #FF6600;
+    width: 228px;
+    height: 58px;
+    border-radius: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    
+
+
+
+}
+
+.Reset p{
+
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 700;
+
+}
