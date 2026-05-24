@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Semana 2 - Tela 2.2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="main-content">
+        <div class="card-top">
+            <h1>Cadastro</h1>
+            <img src="imgs/Logo SerraJr 1.svg" class="logo">
+        </div>
+        <div class="card-bottom">
+            <form class="fields">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" placeholder="exemplo@123.com" required>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" minlength="8" placeholder="exemplo123" required>
+                <label for="confirm-password">Confirmar Senha:</label>
+                <input type="password" id="confirm-password" minlength="8" placeholder="exemplo123" required>
+                <span id="alert" class="hidden">As senhas não coincidem</span>
+                <button id="create" type="submit">Criar</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
