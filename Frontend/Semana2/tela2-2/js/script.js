@@ -10,7 +10,7 @@ document.addEventListener( "click", (event) => {
   let toast = document.querySelector(".toast")
   let overlay = document.querySelector(".overlay")
 
-  
+  console.log(classe)
   if(classe.value == "card-form-btn"){
 
   let email = document.querySelector(".input-email").value
@@ -39,19 +39,25 @@ document.addEventListener( "click", (event) => {
     overlay.classList.add("ativo")
     return
   }
-  else if(senha == senha.toLowerCase()){
-    aviso.textContent = "A senha deve conter ao menos um caracter maiusculo"
+ 
+
+
+  else if(senha != confirmar){
+  
+    aviso.textContent = "A senhas não são iguais"
     aviso.classList.add("toast-body-aviso")
     toastBody.prepend(aviso)
     toast.classList.add("ativo")
     overlay.classList.add("ativo")
     return
   }
-  else if(senha != confirmar){
-    aviso.textContent = "A senhas não são iguais"
+
+   else if(senha == senha.toLowerCase()){
+    aviso.textContent = "A senha deve conter ao menos um caracter maiusculo"
     aviso.classList.add("toast-body-aviso")
     toastBody.prepend(aviso)
     toast.classList.add("ativo")
+    overlay.classList.add("ativo")
     return
   }
   else{
