@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.card{
+    width: 763px;
+    display: flex;
+    flex-direction: column;
+}
+.card-topo{
+    background-color: #FF6600;
+    height: 81px;
+    border-radius: 22px 22px 0px 0px;
+    display: flex;
+    align-items: center;
+}
+.card-topo h1{
+    color:#FFFFFF;
+    font-weight: 700;
+    font-size: 32px;
+    padding-left: 35px;
+}
+.card-topo img{
+    margin-left: 486px;    
+}
+.card-corpo{
+    background-color: #001830;
+    height: 421px;
+    border-radius: 0px 0px 22px 22px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    color:#FFFFFF;
+}
+.formulario{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 500;
+    font-size: 16px;
+    padding-top: 34px;
+}
+.formulario label{
+    margin-left: 20px;
+}
+.formulario input{
+    width: 668px;
+    height: 48px;
+    border-radius: 22px; 
+    font-weight: 500;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 12px;
+    padding-left: 20px;
+}
+.formulario input::placeholder {
+  color: #aaaaaa;
+  font-family: 'Poppins', sans-serif; 
+}
+.button{
+    margin-top: 38px;
+    width: 228px;
+    height: 58px;
+    border: none;
+    background-color: #FF6600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 22px;
+    font-weight: 700;
+    font-size: 24px;
+    color:#FFFFFF;
+}
+
+.button:active {
+    transform: scale(0.97);                           
+}
+
+.button:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);   
+    background-color: #e05a00;                         
+}
