@@ -1,0 +1,170 @@
+*{
+  color: #FFFFFF;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.container{
+  display: grid;
+  justify-content: center;
+}
+
+.card{
+  margin-top: 133px;
+  margin-bottom: 33px;
+  display: grid;
+  width: 763px;
+  
+}
+
+.card-title{
+  height: 64px;
+  background-color:#FF6600;
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 81px;
+  align-content: center;
+}
+
+.card-title-text{
+  margin: 35px;
+}
+.card-title-logo{
+  height: 51px;
+  place-self: end;
+  margin: 35px;
+}
+
+.card-form{
+  background-color: #001830;
+  height: 421px;
+  border-radius: 0px 0pc 22px 22px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.form{
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 34px 0px;
+
+}
+
+input{
+  border-radius: 22px;
+  margin: 4px 45px;
+  height: 45px;
+  color: black;
+  padding: 0 20px;
+  font-size: 16px;
+}
+label{
+  margin: 0px 68px;
+}
+input::placeholder{
+ 
+  font-size: 16px;
+}
+
+.card-form-btn{
+  background-color: #FF6600;
+  border-radius: 22px;
+  place-self: center;
+  text-align: center;
+  font-weight: bold;
+  height: 58px;
+  width: 228px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  margin-bottom: 28px;
+}
+
+.form-warning{
+  margin: 0px 68px;
+  opacity: 0.5;
+  font-size: 10px;
+}
+
+.toast{
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  width: 500px;
+  transform: translateX(-50%);
+  opacity: 0;
+
+}
+
+.toast.ativo{
+  opacity: 1;
+}
+
+.toast-title{
+  background-color: #FF6600;
+  border-radius: 22px 22px 0px 0px;
+}
+.toast-title-text{
+  text-align: center;
+  margin: 0px 35px;
+}
+.toast-body{
+  background-color: #001830;
+  border-radius: 0px 0px 22px 22px;
+  padding: 20px;
+}
+
+
+.toast-body-list{
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+
+.toast-body-list > *{
+  font-weight: bold;
+  padding: 10px 30px ;
+}
+
+.toast-body-btn{
+  bottom: -20px;
+  background-color: #FF6600;
+  border-radius: 22px;
+  place-self: center;
+  text-align: center;
+  font-weight: bold;
+  height: 28px;
+  width: 228px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+}
+
+.toast-body-aviso{
+  margin: 0px;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.overlay{
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.5);
+
+  display: none;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay.ativo{
+  display: flex;
+}
