@@ -1,0 +1,109 @@
+/* Isso se chama reset básico, para remover margens padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card {
+    width: 763px;
+}
+
+.card-topo {
+    background-color: #FF6600;
+    height: 81px;
+    border-radius: 22px 22px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+}
+
+.card-topo h1 {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 32px;
+}
+
+.logo {
+    width: 52px;
+    height: 51px;
+    object-fit: contain;
+}
+
+.card-corpo {
+    background-color: #001830;
+    height: 421px;
+    border-radius: 0px 0px 22px 22px;
+    padding-top: 34px;
+    display: flex;
+    justify-content: center;
+}
+
+#formCadastro {
+    display: flex;
+    flex-direction: column;
+    width: 668px;
+}
+
+.input-grupo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.input-grupo label {
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 16px;
+    margin-left: 20px;
+    margin-bottom: 4px;
+}
+
+.input-grupo input {
+    height: 48px;
+    background-color: #FFFFFF;
+    border-radius: 22px;
+    border: none;
+    padding: 0 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+}
+
+.input-grupo input::placeholder {
+    color: #9B9B9B;
+}
+
+.btn-criar {
+    width: 228px;
+    height: 58px;
+    background-color: #FF6600;
+    border-radius: 22px;
+    border: none;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 24px;
+    align-self: center;
+    margin-top: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: filter 0.2s ease;
+}
+
+.btn-criar:hover {
+    filter: brightness(1.1);
+}
