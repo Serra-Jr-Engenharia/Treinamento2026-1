@@ -22,7 +22,7 @@ app.post('/salas', async (request, reply) => {
         const novaSala = await prisma.room.create({
             data: {
                 nome,
-                capacidade: Number(capacidade), // Garante que será salvo como número inteiro
+                capacidade: Number(capacidade), 
                 recursos
             }
         });
@@ -51,7 +51,7 @@ app.put<{ Params: { id: string } }>('/salas/:id', async (request, reply) => {
     }
 
     try {
-        // Verifica se a sala realmente existe no MySQL antes de atualizar
+        
         const salaExiste = await prisma.room.findUnique({ where: { id } });
         if (!salaExiste) {
             return reply.status(404).send({ error: 'Sala não encontrada' });
@@ -76,7 +76,7 @@ app.delete<{ Params: { id: string } }>('/salas/:id', async (request, reply) => {
     const { id } = request.params;
 
     try {
-        // Verifica se a sala existe no MySQL antes de tentar deletar
+        
         const salaExiste = await prisma.room.findUnique({ where: { id } });
         if (!salaExiste) {
             return reply.status(404).send({ error: 'Sala não encontrada' });
