@@ -1,73 +1,106 @@
-import fastify from 'fastify'
-import { randomUUID } from 'node:crypto';
-import { compressDeflateSync } from 'node:zlib/iter';
+import fastify from 'fastify';
+import { PrismaClient } from '@prisma/client';
 
 const app = fastify();
+const prisma = new PrismaClient();
 
-
-interface sala{
-    id: string;
+interface SalaRequestBody {
     nome: string;
     capacidade: number;
     recursos: string;
 }
 
-const salas: sala[] = []
-
-app.post('/salas', (request, reply) => {
-    const {nome, capacidade, recursos } = request.body as sala;
+app.post('/salas', async (request, reply) => {
+    const { nome, capacidade, recursos } = request.body as SalaRequestBody;
+    
+    
     if (!nome || !capacidade || !recursos) {
         return reply.status(400).send({ error: 'Todos os campos são obrigatórios' });
     }
 
-    const sala: sala = {
-        id: randomUUID(),
-        nome,
-        capacidade,
-        recursos
-    };
-    salas.push(sala)
+    try {
+        const novaSala = await prisma.room.create({
+            data: {
+                nome,
+                capacidade: Number(capacidade), // Garante que será salvo como número inteiro
+                recursos
+            }
+        });
 
-    return reply.status(201).send({message:'Sala criada com sucesso', sala});
-});
-
-app.get('/salas', (request, reply) => {
-    return salas;
-});
-
-
-app.put('/salas/:id', (request, reply) => {
-    const { id } = request.params as { id: string };
-    const { nome, capacidade, recursos } = request.body as sala;
-    const salaIndex = salas.findIndex(s => s.id === id);
-
-    if (salaIndex === -1) {
-        return reply.status(404).send({ error: 'Sala não encontrada' });
+        return reply.status(201).send({ message: 'Sala criada com sucesso', sala: novaSala });
+    } catch (error) {
+        return reply.status(500).send({ error: 'Erro ao criar a sala no banco de dados' });
     }
+});
+
+app.get('/salas', async (request, reply) => {
+    try {
+        const rooms = await prisma.room.findMany();
+        return rooms;
+    } catch (error) {
+        return reply.status(500).send({ error: 'Erro ao buscar as salas no banco de dados' });
+    }
+});
+
+app.put<{ Params: { id: string } }>('/salas/:id', async (request, reply) => {
+    const { id } = request.params;
+    const { nome, capacidade, recursos } = request.body as SalaRequestBody;
 
     if (!nome || !capacidade || !recursos) {
         return reply.status(400).send({ error: 'Todos os campos são obrigatórios' });
     }
 
-salas[salaIndex] = { id, nome, capacidade, recursos };
-    return reply.status(200).send({ message: 'Sala atualizada com sucesso', sala: salas[salaIndex] });
-}
-);
+    try {
+        // Verifica se a sala realmente existe no MySQL antes de atualizar
+        const salaExiste = await prisma.room.findUnique({ where: { id } });
+        if (!salaExiste) {
+            return reply.status(404).send({ error: 'Sala não encontrada' });
+        }
 
-app.delete('/salas/:id', (request, reply) => {
-    const { id } = request.params as { id: string };
-    const salaIndex = salas.findIndex(s => s.id === id);
+        const salaAtualizada = await prisma.room.update({
+            where: { id },
+            data: {
+                nome,
+                capacidade: Number(capacidade),
+                recursos
+            }
+        });
 
-    if (salaIndex === -1) {
-        return reply.status(404).send({ error: 'Sala não encontrada' });
+        return reply.status(200).send({ message: 'Sala atualizada com sucesso', sala: salaAtualizada });
+    } catch (error) {
+        return reply.status(500).send({ error: 'Erro ao atualizar a sala' });
     }
-
-salas.splice(salaIndex, 1);
-    return reply.status(200).send({ message: 'Sala deletada com sucesso' });
 });
+
+app.delete<{ Params: { id: string } }>('/salas/:id', async (request, reply) => {
+    const { id } = request.params;
+
+    try {
+        // Verifica se a sala existe no MySQL antes de tentar deletar
+        const salaExiste = await prisma.room.findUnique({ where: { id } });
+        if (!salaExiste) {
+            return reply.status(404).send({ error: 'Sala não encontrada' });
+        }
+
+        await prisma.room.delete({
+            where: { id }
+        });
+
+        return reply.status(200).send({ message: 'Sala deletada com sucesso' });
+    } catch (error) {
+        return reply.status(500).send({ error: 'Erro ao deletar a sala' });
+    }
+});
+
 
 app.get('/', () => {
-    return { message: 'Hello, Serra Jr.!' }
+    return { message: 'Hello, Serra Jr.!' };
 });
 
-app.listen({ port: 3000 }, () => { console.log('Server is running on port 3000'); }); 
+app.listen({ port: 3000, host: '0.0.0.0' }, (err, address) => { 
+    if (err) {
+        console.error(err);
+        process.exit(1);
+    }
+    console.log(`Server is running on ${address}`); 
+});
