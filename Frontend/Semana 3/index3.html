@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de CEP - Serra Júnior</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+
+    <div id="appContainer">
+        <div id="searchBox">
+            <input 
+                type="text" 
+                id="cepInput" 
+                placeholder="CEP" 
+                maxlength="9"
+            >
+            <button id="btnPesquisar">Pesquisar</button>
+        </div>
+
+        <div id="feedbackMessage"></div>
+
+        <div id="resultCard">
+            <div id="cardHeader">
+                <a id="cepLink" href="#" target="_blank" title="Verificar diretamente no Google">
+                    CEP <span id="cepTitleNumber">00000-000</span> 
+                </a>
+            </div>
+            <div id="cardBody">
+                <div class="info-line"><span class="info-label">Logradouro:</span> <span id="logradouro" class="info-value"></span></div>
+                <div class="info-line"><span class="info-label">Complemento:</span> <span id="complemento" class="info-value"></span></div>
+                <div class="info-line"><span class="info-label">Bairro:</span> <span id="bairro" class="info-value"></span></div>
+                <div class="info-line"><span class="info-label">Localidade:</span> <span id="localidade" class="info-value"></span></div>
+                <div class="info-line"><span class="info-label">UF:</span> <span id="uf" class="info-value"></span></div>
+                <div class="info-line"><span class="info-label">Estado:</span> <span id="estado" class="info-value"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script3.js"></script>
+</body>
+</html>

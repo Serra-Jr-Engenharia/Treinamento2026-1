@@ -1,0 +1,131 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+#appContainer {
+    width: 100%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+#searchBox {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+#cepInput {
+    flex: 1;
+    padding: 14px 20px;
+    border: 2px solid #ff6b00;
+    border-radius: 30px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#cepInput:focus {
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+}
+
+#cepInput::placeholder {
+    color: #ccc;
+}
+
+#btnPesquisar {
+    background-color: #ff6b00;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#btnPesquisar:hover {
+    background-color: #e05e00;
+}
+
+#btnPesquisar:active {
+    transform: scale(0.98);
+}
+
+/* Card de Resultados */
+#resultCard {
+    background-color: #001830;
+    border-radius: 16px;
+    overflow: hidden;
+    display: none; 
+    box-shadow: 0 8px 24px rgba(0, 18, 38, 0.15);
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+#cardHeader {
+    background-color: #ff6b00;
+    padding: 16px;
+    text-align: center;
+}
+
+/* Estilização do Recurso de Link do CEP */
+#cepLink {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+#cepLink:hover {
+    transform: scale(1.05);
+    color: #001830;
+}
+
+#cardBody {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-line {
+    color: white;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.info-label {
+    font-weight: 600;
+}
+
+.info-value {
+    font-weight: 400;
+    color: #e0e0e0;
+}
+
+#feedbackMessage {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: 500;
+}
