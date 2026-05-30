@@ -100,8 +100,6 @@ app.delete('/rooms/:id', (request, reply) => {
     })
 })
 
-
-
 app.listen({
     port: 3333
 }).then(() => {

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela 3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="pesquisa">
+            <input
+                type="text"
+                id="cep"
+                placeholder="CEP"
+                maxlength="9">
+
+            <button id="buscar">
+                Pesquisar
+            </button>
+        </div>
+
+        <div class="card">
+
+            <div class="titulo">
+                CEP <span id="numeroCep">---</span>
+            </div>
+
+            <div class="conteudo">
+
+                <p><strong>Logradouro:</strong> <span id="logradouro"></span></p>
+
+                <p><strong>Complemento:</strong> <span id="complemento"></span></p>
+
+                <p><strong>Bairro:</strong> <span id="bairro"></span></p>
+
+                <p><strong>Localidade:</strong> <span id="localidade"></span></p>
+
+                <p><strong>UF:</strong> <span id="uf"></span></p>
+
+                <p><strong>Estado:</strong> <span id="estado"></span></p>
+
+                <p>
+                    <strong>Mapa:</strong>
+
+                    <a
+                        id="mapaLink"
+                        href="#"
+                        target="_blank">
+
+                        Abrir localização
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="historico">
+
+            <h3>Últimos CEPs pesquisados</h3>
+
+            <ul id="listaHistorico"></ul>
+
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+
+    <div id="modal" class="modal">
+
+        <div class="modal-content">
+
+            <h2>Aviso</h2>
+
+            <p id="mensagemModal"></p>
+
+            <button onclick="fecharModal()">
+                Fechar
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
