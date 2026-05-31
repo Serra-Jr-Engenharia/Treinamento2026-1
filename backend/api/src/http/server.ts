@@ -1,71 +1,85 @@
 import fastify from 'fastify'
-import {randomUUID} from 'node:crypto'
-import { request } from 'node:http'
- 
+import { prisma } from '../lib/prisma.js'
+
 const app = fastify()
 
-interface Salas {
-    id: string
+interface SalaBody {
     nome: string
     capacidade: number
     local: string
     descricao: string
 }
 
-const salas: Salas[] = []
+interface SalaParams {
+    id: string
+}
 
-app.post('/room', (request, reply) => {
-    const {nome, capacidade, local, descricao} = request.body as Salas
 
-    if(!nome || !capacidade || !local || !descricao) {
-        reply.status(400).send({error: 'Todos os campos são obrigatórios'})
-        return
-    }
-    const sala: Salas = {
-        id: randomUUID(),
-        nome,
-        capacidade,
-        local,
-        descricao
-    }
-    salas.push(sala)
-    return reply.status(201).send({message: 'Sala criada com sucesso!'})
-})
+app.post('/room', async (request, reply) => {
+    const { nome, capacidade, local, descricao } = request.body as SalaBody
 
-app.get('/room', () => {
-    return salas
-})
-
-app.put('/room/:id', (request, reply) => {
-    const {id} = request.params as Salas
-    const {nome, capacidade, local, descricao} = request.body as Salas
-    const salaIndex = salas.findIndex(s => s.id == id)
-
-    if (salaIndex == -1) {
-        reply.status(404).send({error: 'Livro não encontrado.'})
-        return
-    }
-    if(!nome || !capacidade || !local || !descricao) {
-        reply.status(400).send({error: 'Todos os campos são obrigatórios'})
-        return
-    }
-    salas[salaIndex] = {id, nome, capacidade, local, descricao}
-    return reply.status(200).send({message: 'Sala atualizada com sucesso'})
-})
-
-app.delete('/room/:id', (request, reply) => {
-    const {id} = request.params as Salas
-    const salaIndex = salas.findIndex(s => s.id == id)
-
-    if (salaIndex == -1) {
-        reply.status(404).send({error: 'Sala não encontrada.'})
+    if (!nome || !capacidade || !local || !descricao) {
+        reply.status(400).send({ error: 'Todos os campos são obrigatórios' })
         return
     }
 
-    salas.splice(salaIndex, 1)
-    return reply.status(200).send({message: 'Sala removida com sucesso'})
+    try {
+        const newRoom = await prisma.room.create({
+            data: { nome, capacidade, local, descricao }
+        })
+        reply.status(201).send(newRoom)
+    } catch (error) {
+        reply.status(500).send({ error: 'Erro ao adicionar sala' })
+    }
 })
 
-app.listen({port: 3333}).then(() =>  {
-    console.log('HTTP server running!')
+app.get('/room', async (_, reply) => {
+    try {
+        const salas = await prisma.room.findMany()
+        reply.send(salas)
+    } catch (error) {
+        reply.status(500).send({ error: 'Erro ao buscar salas' })
+    }
+})
+
+app.put('/room/:id', async (request, reply) => {
+    const { id } = request.params as SalaParams
+    const { nome, capacidade, local, descricao } = request.body as SalaBody
+    const roomId = parseInt(id)
+
+    if (!nome || !capacidade || !local || !descricao) {
+        reply.status(400).send({ error: 'Todos os campos são obrigatórios' })
+        return
+    }
+
+    try {
+        const updatedSala = await prisma.room.update({
+            where: { id: roomId },
+            data: { nome, capacidade, local, descricao }
+        })
+        reply.status(200).send(updatedSala)
+    } catch (error) {
+        reply.status(500).send({ error: 'Erro ao atualizar sala' })
+    }
+})
+
+app.delete('/room/:id', async (request, reply) => {
+    const { id } = request.params as SalaParams
+    const roomId = parseInt(id)
+
+    try {
+        await prisma.room.delete({
+            where: { id: roomId }
+        })
+        reply.send({ message: 'Sala removida com sucesso' })
+    } catch (error) {
+        reply.status(500).send({ error: 'Erro ao remover sala.' })
+    }
+})
+
+app.listen({ port: 3333 }).then(() => {
+    console.log('HTTP server running on port 3333!')
+}).catch((err) => {
+    console.error('Server failed to start:', err)
+    process.exit(1)
 })
