@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Room {
+  id         String  @id @default(uuid())
+  name       String
+  capacidade Int
+  local      String?
+  descricao  String?
+
+  @@map("rooms")
+}
+
+model RoomLog {
+  id        String   @id @default(uuid())
+  roomId    String
+  action    String
+  changes   Json?
+  timestamp DateTime @default(now())
+
+  @@map("room_logs")
+}
