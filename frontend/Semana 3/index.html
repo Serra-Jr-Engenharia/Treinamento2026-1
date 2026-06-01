@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="busca">
+            <input type="text" id="input_cep" placeholder="CEP" maxlength="9">
+            <button onclick="buscarCep()">Pesquisar</button>
+        </div>
+
+        <div class="card" id="card_resultado">
+            <div class="card-topo">
+                CEP <span id="cep_numero">&lt;numero_do_cep&gt;</span>
+            </div>
+            <div class="card-corpo">
+                <p>Logradouro: <span id="logradouro"></span></p>
+                <p>Complemento: <span id="complemento"></span></p>
+                <p>Bairro: <span id="bairro"></span></p>
+                <p>Localidade: <span id="localidade"></span></p>
+                <p>UF: <span id="uf"></span></p>
+                <p>Estado: <span id="estado"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
