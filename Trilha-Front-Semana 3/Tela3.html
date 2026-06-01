@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Tela3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <title>Tela 3</title>
+</head>
+
+<body>
+    <main class="Projeto">
+
+        <header class="Pesquisa">
+            <form action="" class="formulario">
+                <input type="text" id="CEP" placeholder="CEP">
+                <button type="button" id="botao" onclick="buscarCEP()">Pesquisar</button>
+            </form>
+        </header>
+
+        <div class="BoxTop">
+            <h1 id="titulo_cep"> CEP </h1>
+        </div>
+
+        <div class="BoxBotton">
+            <ul>
+                <li id="logradouro">Logradouro:</li>
+                <li id="complemento">Complemento:</li>
+                <li id="bairro">Bairro:</li>
+                <li id="localidade">Localidade:</li>
+                <li id="uf">UF:</li>
+                <li id="estado">Estado:</li>
+                <li id="mapa">Mapa: 📍 <a id="linkmapa"  href="#" target="_blank">Ver no Google Maps</a></li>
+
+            </ul>
+        </div>
+
+    </main>
+
+    <script src="Tela3.js"></script>
+</body>
+
+</html>

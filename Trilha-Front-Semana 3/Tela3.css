@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+
+    font-family: 'Poppins';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+
+
+
+
+
+.Pesquisa{
+
+    display: flex;
+    width: 647px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 38px;
+
+
+}
+
+#CEP{
+    width: 477.83px;
+    height: 48px;
+    padding: 3px;
+    border-radius: 22px ;
+    border: 2px solid #FF6600;
+    border-style: solid;
+    margin-right: 11.68px;
+
+}
+
+#CEP:focus {
+    outline: none;
+}
+
+.formulario{
+
+display: flex;
+align-items: center;
+
+
+}
+#botao{
+    font-family: 'Poppins';
+    font-size: 24px;
+    color: #FFFFFF;
+    font-weight: 500;
+    width: 157.5px;
+    height: 48px;
+    background-color: #FF6600;
+    border-radius: 22px ;
+    border: 2px solid #FF6600;
+    border-style: solid;
+}
+
+
+
+.BoxTop{
+
+    background-color: #FF6600;
+    display: flex;
+    width: 647px;
+    height: 64px;
+    border-radius: 22px 22px 0px 0px;
+    align-items: center;
+    justify-content: center;
+}
+
+.BoxTop h1{
+
+    font-size: 24px;
+    color: #FFFFFF;
+    font-weight: 700;
+
+
+}
+
+.BoxBotton{
+background-color: #001830;
+display: flex;
+width: 647px;
+height: 248px;
+border-radius: 0px 0px 22px 22px;
+
+}
+
+.BoxBotton ul{
+    height: 180px;
+    margin: 17px 0px 16px 39px;
+    color: #FFFFFF;
+    list-style: none;
+
+}
+
+.BoxBotton li{
+
+    font-size: 20px;
+
+
+}
