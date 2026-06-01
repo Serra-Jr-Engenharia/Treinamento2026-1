@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 3 - Busca CEP Serra Jr</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="container">
+        <div class="search-container">
+            <input type="text" id="cepInput" placeholder="CEP" maxlength="9">
+            <button id="btnPesquisar">Pesquisar</button>
+        </div>
+
+        <div class="result-card" id="resultCard">
+            <header class="card-header">
+                <h2 id="cepHeader">CEP &lt;numero_do_cep&gt;</h2>
+            </header>
+            
+            <div class="card-body">
+                <p><strong>Logradouro:</strong> <span id="logradouro"></span></p>
+                <p><strong>Complemento:</strong> <span id="complemento"></span></p>
+                <p><strong>Bairro:</strong> <span id="bairro"></span></p>
+                <p><strong>Localidade:</strong> <span id="localidade"></span></p>
+                <p><strong>UF:</strong> <span id="uf"></span></p>
+                <p><strong>Estado:</strong> <span id="estado"></span></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
