@@ -4,18 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/http/server.ts"
+    "dev": "tsx watch --env-file .env src/http/server.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@types/node": "^25.9.1",
+    "prisma": "^7.8.0",
     "tsx": "^4.22.3",
     "typescript": "^6.0.3"
   },
   "dependencies": {
-    "fastify": "^5.8.5"
+    "@prisma/adapter-mariadb": "^7.8.0",
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "fastify": "^5.8.5",
+    "mysql2": "^3.5.2",
+    "pg": "^8.21.0"
   }
 }
