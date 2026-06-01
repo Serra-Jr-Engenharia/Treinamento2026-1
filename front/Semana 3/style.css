@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+header, .card {
+    width: min(647px, 90vw);
+}
+
+header{
+    width: 647px;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 38px;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+header input{
+    width: 477.8296813964844px;
+    height: 48px;
+    border-radius: 22px;
+    border-width: 2px;
+    border-color: #FF6600;
+    padding-right: 7.68px;
+    outline: none;
+    padding-left: 7.19px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+header input::placeholder{
+    color: #9B9B9B;
+    font-family: 'Poppins', sans-serif;
+}
+
+.button{
+    width: 157.48654174804688px;
+    height: 48px;
+    background-color: #FF6600;
+    font-weight: 500;
+    font-size: 24px;
+    color:#FFFFFF;
+    border-radius: 22px;
+    border-width: 2px;
+    border-color: #FF6600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+}
+
+.button:active {
+    transform: scale(0.97);                           
+}
+
+.button:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);   
+    background-color: #FF6600;                         
+}
+
+.card {
+    width: 647px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card-topo{
+    background-color: #FF6600;
+    height: 64px;
+    border-radius: 22px 22px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-topo h1{
+    color:#FFFFFF;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.card-corpo{
+    background-color: #001830;
+    height: 213px;
+    border-radius: 0px 0px 22px 22px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    color:#FFFFFF;
+    font-weight: 500;
+    font-size: 20px;
+    justify-content: center;
+}
+
+.card-corpo ul{
+    padding-left: 39px;
+    list-style: none;  
+}
+
+.card-corpo span{
+    color: #FF6600;
+}

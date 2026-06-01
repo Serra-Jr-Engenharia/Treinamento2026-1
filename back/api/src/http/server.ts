@@ -1,81 +1,105 @@
+import "dotenv/config" 
 import fastify from "fastify";
-import { randomUUID } from "node:crypto";
+import { PrismaClient } from "../../generated/prisma/client";
+import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 
 const app = fastify()
 
-interface Salas{
-    id: string;
+const url = new URL(process.env.DATABASE_URL!);
+
+const adapter = new PrismaMariaDb({
+  host: url.hostname,
+  port: Number(url.port),
+  user: url.username,
+  password: url.password,
+  database: url.pathname.slice(1)
+});
+
+const prisma = new PrismaClient({
+  adapter
+});
+
+
+interface SalaBody {
     nome: string;
     capacidade: number;
     local: string;
     descricao: string;
 }
 
-const salas: Salas[] = []
+interface SalaParams {
+    id: string;
+}
 
-app.post('/room',(request,reply) => {
-    const {nome,capacidade,local,descricao} = request.body as Salas
+app.post('/room', async (request, reply) => {
+    const { nome, capacidade, local, descricao } = request.body as SalaBody
 
     if (!nome || !capacidade || !local || !descricao) {
-        reply.status(400).send({error: 'Todos os campos são obrigatórios!'})
+        reply.status(400).send({ error: 'Todos os campos são obrigatórios!' })
         return
     }
 
-    const sala: Salas = {
-        id: randomUUID(),
-        nome,
-        capacidade,
-        local,
-        descricao,
-    }
-    salas.push(sala)
+    await prisma.room.create({
+        data: { nome, capacidade, local, descricao }
+    })
 
-    return reply.status(201).send({message: 'Sala criada com sucesso!'})
+    return reply.status(201).send({ message: 'Sala criada com sucesso!' })
 })
 
-app.get('/room', () => {
+app.get('/room', async () => {
+    const salas = await prisma.room.findMany()
     return salas
 })
 
-app.put('/room/:id', (request,reply) => {
-    const {id} = request.params as Salas
+app.put('/room/:id', async (request, reply) => {
+    const { id } = request.params as SalaParams
+    const { nome, capacidade, local, descricao } = request.body as SalaBody
 
-    const {nome,capacidade,local,descricao} = request.body as Salas
+    const sala = await prisma.room.findUnique({
+        where: { id: Number(id) }
+    })
 
-    const salaIndex = salas.findIndex(s => s.id === id)
-
-    if (salaIndex === -1) {
-        reply.status(404).send({error: 'A sala não foi encontrada!'})
+    if (!sala) {
+        reply.status(404).send({ error: 'A sala não foi encontrada!' })
         return
     }
 
     if (!nome || !capacidade || !local || !descricao) {
-        reply.status(400).send({error: 'Todos os campos são obrigatórios!'})
+        reply.status(400).send({ error: 'Todos os campos são obrigatórios!' })
         return
     }
 
-    salas[salaIndex] = {id,nome,capacidade,local,descricao}
-    return reply.status(200).send({message: 'Sala atualizada com sucesso!'})
+    await prisma.room.update({
+        where: { id: Number(id) },
+        data: { nome, capacidade, local, descricao }
+    })
+
+    return reply.status(200).send({ message: 'Sala atualizada com sucesso!' })
 })
 
-app.delete('/room/:id' , (request,reply) => {
-    const { id } = request.params as Salas
+app.delete('/room/:id', async (request, reply) => {
+    const { id } = request.params as SalaParams
 
-    const index = salas.findIndex(s => s.id === id)
+    const sala = await prisma.room.findUnique({
+        where: { id: Number(id) }
+    })
 
-    if (index === -1) {
-        reply.status(404).send({error: 'A sala não foi encontrada!'})
+    if (!sala) {
+        reply.status(404).send({ error: 'A sala não foi encontrada!' })
         return
     }
 
-    salas.splice(index, 1)
-    return reply.status(200).send({message: 'Sala removida com sucesso!'})
+    await prisma.room.delete({
+        where: { id: Number(id) }
+    })
+
+    return reply.status(200).send({ message: 'Sala removida com sucesso!' })
 })
 
 app.get('/', () => {
     return 'Hello NLW'
 })
 
-app.listen({port: 3333 }).then(() => {
+app.listen({ port: 3333 }).then(() => {
     console.log('HTTP server running!')
 })

@@ -4,7 +4,6 @@
     "module": "CommonJS",
     "moduleResolution": "Bundler",
 
-    "rootDir": "./src",
     "outDir": "./dist",
 
     "strict": true,
@@ -14,5 +13,5 @@
     "lib": ["ES2020"]
   },
 
-  "include": ["src"]
+  "include": ["src", "prisma.config.ts"]
 }
