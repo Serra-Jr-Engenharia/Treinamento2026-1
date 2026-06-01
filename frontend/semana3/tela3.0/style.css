@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Poppins', sans-serif;  
+}
+
+.pesquisa_cep {
+    max-width: 647px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 48px;
+    margin-bottom: 38px;
+    gap: 11.68px;
+}
+
+#cep_input {
+    flex-grow: 1;
+    border-style: solid;
+    border-color: #ff6600;
+    border-radius: 22px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    padding-left: 7.19px;
+    outline: none;
+}
+
+.btn:active {
+    transform: scale(0.97);
+    filter: brightness(0.85);
+}
+
+#btn_pesquisar {
+    background-color: #ff6600;
+    color: white;
+    max-width: 157.49px;
+    width: 100%;
+    height: 48px;
+    border-radius: 22px;
+    margin: 0;
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.cartao_info{
+    max-width: 647px;
+    width: 100%;
+}
+
+.cartao_top {
+    background-color: #ff6600;
+    color: white;
+    height: 64px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    border-radius: 22px 22px 0 0;
+    line-height: 100%;
+    font-weight: 700;
+}
+
+.cartao_title{
+    font-size: 24px;
+    margin: 0;
+}
+
+.lista_result{
+    list-style: none;
+    background-color: #001830;
+    color: white;
+    margin: 0;
+    border-radius: 0 0 22px 22px;
+    height: 160px; 
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 100%;
+    padding: 24px 40px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.lista_result li span:last-child {
+    font-weight: 400; 
+    font-size: 20px;  
+    margin-left: 5px;
+}
+
+
+
+
+
+
+

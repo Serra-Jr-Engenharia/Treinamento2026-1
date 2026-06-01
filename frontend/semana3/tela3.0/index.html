@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+
+    <title>Tela 3</title>
+</head>
+<body>
+    <div class="pesquisa_cep">
+        <input type="text" id="cep_input" placeholder="CEP" maxlength="9">
+        <button type="submit" id="btn_pesquisar" class="btn btn_pesquisar">Pesquisar</button>
+    </div>
+
+    <div class="cartao_info">
+        <div class="cartao_top">
+            <h1 class="cartao_title"> CEP <span id="cep_title">&lt; numero_do_cep &gt;</span> </h1>
+        </div>
+        <div class="cartao_bottom">
+            <ul class="lista_result">
+                <li> <span class="logradouro">Logradouro:</span>
+                    <span id="logradouro_id"></span>
+                </li>
+                <li>
+                    <span class="complemento">Complemento:</span>
+                    <span id="complemento_id"></span>
+                </li>
+                <li>
+                    <span class="bairro">Bairro:</span>
+                    <span id="bairro_id"></span>
+                </li>
+                <li>
+                    <span class="localidade">Localidade:</span>
+                    <span id="localidade_id"></span>
+                </li>
+                <li>
+                    <span class="uf">UF:</span>
+                    <span id="uf_id"></span>
+                </li>
+                <li>
+                    <span class="estado">Estado:</span>
+                    <span id="estado_id"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
