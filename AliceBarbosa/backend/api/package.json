@@ -1,0 +1,20 @@
+{
+  "name": "backend-api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "fastify": "^5.8.5",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "prisma": "^5.22.0",
+    "tsd": "^0.33.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  }
+}
