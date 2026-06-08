@@ -5,47 +5,54 @@ export default function MemberCard({
   curso,
 }) {
   return (
-    <div className="relative
-    hover:-translate-y-2
-          transition">
-
+    <div
+      className="
+        relative
+        pt-6
+        hover:-translate-y-2
+        transition-transform
+      "
+    >
+    
       <div
         className="
-          absolute
-          -top-5
-          left-1/2
-          -translate-x-1/2
-          bg-orange-500
+         absolute
+         top-0
+         left-1/2
+         -translate-x-1/2
+          w-[187px]
+          h-[64px]
+          bg-[#FF6600]
+          rounded-[22px]
+          flex
+          items-center
+          justify-center
           text-white
-          px-5
-          py-2
-          rounded-xl
           font-bold
-         
-        "
+          text-[28px]
+          z-10
+       "
       >
         {membro}
       </div>
 
       <div
         className="
-          w-74
-          h-36
+          w-[336px]
+          h-[309px]
           bg-slate-950
-          rounded-2xl
+          rounded-[22px]
           flex
           flex-col
           justify-center
           items-center
           text-white
-          gap-2
-          shadow-lg
-          
+          gap-4
         "
       >
-        <p className="font-bold">{nome}</p>
-        <p className="font-bold">{idade}</p>
-        <p className="font-bold">{curso}</p>
+        <p className="font-bold text-[24px]">{nome}</p>
+        <p className="font-bold text-[24px]">{idade}</p>
+        <p className="font-bold text-[24px]">{curso}</p>
       </div>
     </div>
   );
