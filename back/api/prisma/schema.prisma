@@ -5,14 +5,15 @@ generator client {
 
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
-model Room{
-  id Int @id @default(autoincrement())
-  nome String
+model Room {
+  id         Int      @id @default(autoincrement())
+  nome       String
   capacidade Int
-  local String
-  descricao String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  local      String
+  descricao  String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
