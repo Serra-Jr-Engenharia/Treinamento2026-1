@@ -12,13 +12,15 @@
   "type": "module",
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^25.9.1",
     "prisma": "^6",
-    "tsx": "^4.22.3",
     "typescript": "^6.0.3"
   },
   "dependencies": {
+    "@fastify/jwt": "^10.1.0",
     "@prisma/client": "^6",
+    "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "fastify": "^5.8.5",
     "fastify-type-provider-zod": "^6.1.0",
