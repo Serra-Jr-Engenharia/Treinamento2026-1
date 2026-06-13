@@ -1,5 +1,6 @@
 import type { FastifyInstance } from 'fastify'
 import { prisma } from '../lib/prisma.js'
+import { roomSchema, roomParamsSchema } from '../schemas/roomSchema.js'
 
 export default async function roomsController(app: FastifyInstance) {
 
@@ -10,16 +11,8 @@ export default async function roomsController(app: FastifyInstance) {
   })
 
   app.post('/rooms', async (request, reply) => {
-    const { nome, capacidade, local, descricao } = request.body as {
-      nome: string
-      capacidade: number
-      local: string
-      descricao: string
-    }
-
-    if (!nome || !capacidade || !local || !descricao) {
-      return reply.status(400).send({ error: 'Todos os campos são obrigatórios'})
-    }
+    const { nome, capacidade, local, descricao } =
+      roomSchema.parse(request.body)
 
     const room = await prisma.room.create({
       data: {
@@ -33,23 +26,25 @@ export default async function roomsController(app: FastifyInstance) {
     return reply.status(201).send(room)
   })
 
+  
   app.put('/rooms/:id', async (request, reply) => {
-    const { id } = request.params as { id: string }
+    const { id } = roomParamsSchema.parse(request.params)
 
-    const roomExists = await prisma.room.findUnique({ where: { id: Number(id) }})
+    const roomExists = await prisma.room.findUnique({
+      where: { id }
+    })
 
     if (!roomExists) {
-      return reply.status(404).send({ error: 'Sala não encontrada'})
+      return reply.status(404).send({
+        error: 'Sala não encontrada'
+      })
     }
 
-    const { nome, capacidade, local, descricao } = request.body as {
-      nome: string
-      capacidade: number
-      local: string
-      descricao: string
-    }
+    const { nome, capacidade, local, descricao } =
+      roomSchema.parse(request.body)
 
-    const room = await prisma.room.update({ where: { id: Number(id) },
+    const room = await prisma.room.update({
+      where: { id },
       data: {
         nome,
         capacidade,
@@ -58,20 +53,28 @@ export default async function roomsController(app: FastifyInstance) {
       }
     })
 
-    return reply.send(room)
+    return room
   })
 
   app.delete('/rooms/:id', async (request, reply) => {
-    const { id } = request.params as { id: string }
+      const { id } = roomParamsSchema.parse(request.params)
 
-    const roomExists = await prisma.room.findUnique({ where: { id: Number(id) }})
+      const roomExists = await prisma.room.findUnique({
+        where: { id }
+      })
 
-    if (!roomExists) {
-      return reply.status(404).send({ error: 'Sala não encontrada'})
-    }
+      if (!roomExists) {
+        return reply.status(404).send({
+          error: 'Sala não encontrada'
+        })
+      }
 
-    await prisma.room.delete({ where: { id: Number(id) }})
+      await prisma.room.delete({
+        where: { id }
+      })
 
-    return reply.send({ message: 'Sala removida com sucesso'})
-  })
+      return {
+        message: 'Sala removida com sucesso'
+      }
+    })
 }
