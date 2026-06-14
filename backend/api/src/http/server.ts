@@ -1,10 +1,18 @@
 import 'dotenv/config'
 import fastify from 'fastify'
+import fastifyJwt from '@fastify/jwt'
 import { ZodError } from 'zod'
+
 import roomsController from '../routes/RoomsController.js'
+import authController from '../routes/AuthController.js'
 
 const app = fastify()
 
+app.register(fastifyJwt, {
+  secret: process.env.JWT_SECRET!
+})
+
+app.register(authController)
 app.register(roomsController)
 
 app.setErrorHandler((error, request, reply) => {

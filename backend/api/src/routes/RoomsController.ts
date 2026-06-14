@@ -1,8 +1,11 @@
 import type { FastifyInstance } from 'fastify'
 import { prisma } from '../lib/prisma.js'
 import { roomSchema, roomParamsSchema } from '../schemas/roomSchema.js'
+import { verifyJwt } from '../hooks/auth.js'
 
 export default async function roomsController(app: FastifyInstance) {
+
+  app.addHook('onRequest', verifyJwt)
 
   app.get('/rooms', async () => {
     const rooms = await prisma.room.findMany()
