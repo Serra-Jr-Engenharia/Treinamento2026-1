@@ -1,6 +1,7 @@
 import { prisma } from "../lib/prisma.js"
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod"
 import z from "zod"
+import { verifyJWT } from "../hooks/verifyJWT.js"
 
 // 1. POST /rooms
 // 2. GET /rooms
@@ -12,6 +13,8 @@ import z from "zod"
 // 8. DELETE /rooms/:id
 
 export const roomController: FastifyPluginAsyncZod = async app => {
+
+    app.addHook("onRequest", verifyJWT)
 
     app.post('/rooms', {
         schema: {

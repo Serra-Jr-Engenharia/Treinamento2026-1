@@ -1,0 +1,10 @@
+import type { FastifyReply, FastifyRequest } from "fastify";
+
+
+export async function verifyJWT(request: FastifyRequest, reply: FastifyReply) {
+    try {
+        await request.jwtVerify()
+    } catch (error) {
+        return reply.status(400).send({error: "Não autorizado. Token inválido ou ausente."})
+    }
+}
