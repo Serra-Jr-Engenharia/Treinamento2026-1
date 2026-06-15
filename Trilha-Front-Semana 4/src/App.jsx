@@ -1,6 +1,8 @@
 import Header from "./componentes/barraTop";
 import Card from "./componentes/cards";
 import Footer from "./componentes/barracopright";
+import "./index.css";
+
 
 function App() {
   return (
