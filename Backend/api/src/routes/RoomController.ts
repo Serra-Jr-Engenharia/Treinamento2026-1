@@ -2,6 +2,9 @@ import { prisma } from "../lib/prisma.js"
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod"
 import z from "zod"
 import { verifyJWT } from "../hooks/verifyJWT.js"
+import * as RoomSchemas from "../schemas/roomSchemas.js"
+import { errorResponseSchema } from "../schemas/globalSchemas.js"
+
 
 // 1. POST /rooms
 // 2. GET /rooms
@@ -18,27 +21,10 @@ export const roomController: FastifyPluginAsyncZod = async app => {
 
     app.post('/rooms', {
         schema: {
-            body: z.object({
-                name: z.string("O nome da sala é obrigatório"),
-                capacidade: z.number("A capacidade da sala deve ser um número obrigatoriamente")
-                    .int("A capacidade deve ser um número inteiro")
-                    .positive("A capacidade deve ser um número positivo")
-                    .min(1, "A capacidade mínima é 1")
-                    .max(50, "A capacidade máxima é 50"),
-                local: z.string("O local da sala é obrigatório"),
-                descricao: z.string().nullable().optional()
-            }),
+            body: RoomSchemas.createRoomBodySchema,
             response: {
-                201: z.object({
-                    id: z.string(),
-                    name: z.string(),
-                    capacidade: z.number(),
-                    local: z.string(),
-                    descricao: z.string().nullable()
-                }),
-                500: z.object({
-                    error: z.string()
-                })
+                201: RoomSchemas.roomResponseSchema,
+                500: errorResponseSchema
             }
         }
     }, async (request, reply) => {
@@ -75,18 +61,8 @@ export const roomController: FastifyPluginAsyncZod = async app => {
     app.get('/rooms', {
         schema: {
             response: {
-                200: z.array(
-                    z.object({
-                        id: z.string(),
-                        name: z.string(),
-                        capacidade: z.number(),
-                        local: z.string(),
-                        descricao: z.string().nullable()
-                    })
-                ),
-                500: z.object({
-                    error: z.string()
-                })
+                200: RoomSchemas.getAllRoomsResponseSchema,
+                500: errorResponseSchema
             }
         }
     }, async (_, reply) => {
@@ -101,18 +77,8 @@ export const roomController: FastifyPluginAsyncZod = async app => {
     app.get('/rooms/logs', {
         schema: {
             response: {
-                200: z.array(
-                    z.object({
-                        id: z.string(),
-                        roomId: z.string(),
-                        action: z.string(),
-                        changes: z.unknown(),
-                        timestamp: z.date()
-                    })
-                ),
-                500: z.object({
-                    error: z.string()
-                })
+                200: RoomSchemas.getRoomsLogResponseSchema,
+                500: errorResponseSchema
             }
         }
     }, async (_, reply) => {
@@ -130,21 +96,9 @@ export const roomController: FastifyPluginAsyncZod = async app => {
                 roomId: z.string()
             }),
             response: {
-                200: z.array(
-                    z.object({
-                        id: z.string(),
-                        roomId: z.string(),
-                        action: z.string(),
-                        changes: z.unknown(),
-                        timestamp: z.date()
-                    })
-                ),
-                404: z.object({
-                    error: z.string()
-                }),
-                500: z.object({
-                    error: z.string()
-                })
+                200: RoomSchemas.getRoomsLogResponseSchema,
+                404: errorResponseSchema,
+                500: errorResponseSchema
             }
         }
     }, async (request, reply) => {
@@ -173,19 +127,9 @@ export const roomController: FastifyPluginAsyncZod = async app => {
                 id: z.string()
             }),
             response: {
-                200: z.object({
-                    id: z.string(),
-                    name: z.string(),
-                    capacidade: z.number(),
-                    local: z.string(),
-                    descricao: z.string().nullable()
-                }),
-                404: z.object({
-                    error: z.string()
-                }),
-                500: z.object({
-                    error: z.string()
-                })
+                200: RoomSchemas.roomResponseSchema,
+                404: errorResponseSchema,
+                500: errorResponseSchema
             }
         }
     }, async (request, reply) => {
@@ -210,30 +154,11 @@ export const roomController: FastifyPluginAsyncZod = async app => {
             params: z.object({
                 id: z.string()
             }),
-            body: z.object({
-                name: z.string("O nome da sala é obrigatório"),
-                capacidade: z.number("A capacidade da sala deve ser um número obrigatoriamente")
-                    .int("A capacidade deve ser um número inteiro")
-                    .positive("A capacidade deve ser um número positivo")
-                    .min(1, "A capacidade mínima é 1")
-                    .max(50, "A capacidade máxima é 50"),
-                local: z.string("O local da sala é obrigatório"),
-                descricao: z.string().nullable().optional()
-            }),
+            body: RoomSchemas.createRoomBodySchema,
             response: {
-                200: z.object({
-                    id: z.string(),
-                    name: z.string(),
-                    capacidade: z.number(),
-                    local: z.string(),
-                    descricao: z.string().nullable()
-                }),
-                404: z.object({
-                    error: z.string()
-                }),
-                500: z.object({
-                    error: z.string()
-                })
+                200: RoomSchemas.roomResponseSchema,
+                404: errorResponseSchema,
+                500: errorResponseSchema
             }
         }
     }, async (request, reply) => {
@@ -270,31 +195,11 @@ export const roomController: FastifyPluginAsyncZod = async app => {
             params: z.object({
                 id: z.string()
             }),
-            body: z.object({
-                name: z.string().optional(),
-                capacidade: z.number("A capacidade deve ser um número obrigatoriamente")
-                    .int("A capacidade deve ser um número inteiro")
-                    .positive("A capacidade deve ser um número positivo")
-                    .min(1, "A capacidade mínima é 1")
-                    .max(50, "A capacidade máxima é 50")
-                    .optional(),
-                local: z.string().optional(),
-                descricao: z.string().nullable().optional()
-            }),
+            body: RoomSchemas.updateRoomsBodySchema,
             response: {
-                200: z.object({
-                    id: z.string(),
-                    name: z.string(),
-                    capacidade: z.number(),
-                    local: z.string(),
-                    descricao: z.string().nullable()
-                }),
-                404: z.object({
-                    error: z.string()
-                }),
-                500: z.object({
-                    error: z.string()
-                })
+                200: RoomSchemas.roomResponseSchema,
+                404: errorResponseSchema,
+                500: errorResponseSchema
             }
         }
     }, async (request, reply) => {
@@ -338,15 +243,9 @@ export const roomController: FastifyPluginAsyncZod = async app => {
                 id: z.string()
             }),
             response: {
-                200: z.object({
-                    message: z.string()
-                }),
-                404: z.object({
-                    error: z.string()
-                }),
-                500: z.object({
-                    error: z.string()
-                })
+                200: RoomSchemas.deleteResponseSchema,
+                404: errorResponseSchema,
+                500: errorResponseSchema
             }
         }
     }, async (request, reply) => {

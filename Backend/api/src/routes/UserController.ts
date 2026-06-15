@@ -1,7 +1,7 @@
 import { prisma } from "../lib/prisma.js"
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import { hashPassword, verifyPassword } from "../utils/hash.js";
-import { createResponseSchema, createBodySchema, loginBodySchema, loginResponseSchema, updatePasswordBodySchema, userResponseSchema, updatePasswordResponseSchema } from "../schemas/userSchemas.js";
+import * as UserSchemas from "../schemas/userSchemas.js";
 import { errorResponseSchema } from "../schemas/globalSchemas.js";
 import { verifyJWT } from "../hooks/verifyJWT.js";
 
@@ -14,9 +14,9 @@ export const userController: FastifyPluginAsyncZod = async app => {
 
     app.post("/register", {
         schema: {
-            body: createBodySchema,
+            body: UserSchemas.createBodySchema,
             response: {
-                201: createResponseSchema,
+                201: UserSchemas.createResponseSchema,
                 400: errorResponseSchema,
                 500: errorResponseSchema
             }
@@ -48,9 +48,9 @@ export const userController: FastifyPluginAsyncZod = async app => {
 
     app.post("/login", {
         schema: {
-            body: loginBodySchema,
+            body: UserSchemas.loginBodySchema,
             response: {
-                201: loginResponseSchema,
+                201: UserSchemas.loginResponseSchema,
                 400: errorResponseSchema,
                 500: errorResponseSchema
             }
@@ -84,7 +84,7 @@ export const userController: FastifyPluginAsyncZod = async app => {
         onRequest: [verifyJWT],
         schema: {
             response: {
-                200: userResponseSchema,
+                200: UserSchemas.userResponseSchema,
                 400: errorResponseSchema
             }
         }
@@ -100,9 +100,9 @@ export const userController: FastifyPluginAsyncZod = async app => {
     app.patch("/user/password", {
         onRequest: [verifyJWT],
         schema: {
-            body: updatePasswordBodySchema,
+            body: UserSchemas.updatePasswordBodySchema,
             response: {
-                200: updatePasswordResponseSchema,
+                200: UserSchemas.updatePasswordResponseSchema,
                 400: errorResponseSchema,
                 404: errorResponseSchema,
                 500: errorResponseSchema
