@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  font-family: 'Poppins', sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: #F5F5F5;
+}
+
+.equipe {
+
+  height: calc(100vh - 60px);
+
+  display: grid;
+
+  grid-template-rows:
+    114px
+    1fr
+    67px;
+}
+
+.equipe header {
+
+  background-color: #FF6B00;
+
+  display: flex;
+
+  align-items: center;
+}
+
+.equipe .logoContainer {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  margin-left: 40px;
+}
+
+.equipe .logo {
+
+  width: 55px;
+}
+
+.equipe .logoContainer h1 {
+
+  color: white;
+
+  font-size: 32px;
+
+  font-weight: 700;
+}
+
+.equipe .container {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 336px);
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 42px;
+
+  padding: 20px;
+
+  min-height: 0;
+
+  overflow: visible;
+}
+
+.equipe .card {
+
+  width: 336px;
+
+  height: 277px;
+
+  background-color: #001830;
+
+  border-radius: 22px;
+
+  position: relative;
+
+  overflow: visible;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.equipe .tag {
+
+  position: absolute;
+
+  top: -28px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 140px;
+
+  height: 55px;
+
+  background-color: #FF6B00;
+
+  border-radius: 18px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  color: white;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  z-index: 10;
+}
+
+.equipe .card h2,
+.equipe .card p {
+
+  color: white;
+
+  font-size: 22px;
+
+  font-weight: 600;
+}
+
+.equipe footer {
+
+  background-color: #FF6B00;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  margin: 0;
+}
