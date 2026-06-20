@@ -9,6 +9,7 @@ import { createUser } from "../routes/createUser.ts";
 import fastifyJwt from "@fastify/jwt";
 import { login } from "../routes/login.ts";
 import { profile } from "../routes/profile.ts";
+import { roomReservation } from "../routes/roomReservation.ts";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -20,6 +21,7 @@ app.register(createUser);
 app.register(login);
 app.register(profile);
 app.register(roomsController);
+app.register(roomReservation);
 
 app
   .listen({ port: 3333 })

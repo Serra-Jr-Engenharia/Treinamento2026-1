@@ -15,6 +15,7 @@ model Room {
   descricao  String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  room_res room_reservation[]
 
   @@map("room")
 }
@@ -24,6 +25,19 @@ model User{
   name String
   email String @unique
   password String
+room_res room_reservation[]
 
   @@map("user")
+}
+
+model room_reservation{
+  id Int @id @default(autoincrement())
+  dataHora DateTime @default(now())
+  user User @relation(fields: [userID], references: [id])
+  room Room @relation(fields: [roomId], references: [id])
+  userID Int 
+  roomId Int
+
+  @@map("reservas")
+
 }

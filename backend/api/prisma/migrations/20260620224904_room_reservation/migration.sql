@@ -1,0 +1,15 @@
+-- CreateTable
+CREATE TABLE `reservas` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `dataHora` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `userID` INTEGER NOT NULL,
+    `roomId` INTEGER NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `reservas` ADD CONSTRAINT `reservas_userID_fkey` FOREIGN KEY (`userID`) REFERENCES `user`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `reservas` ADD CONSTRAINT `reservas_roomId_fkey` FOREIGN KEY (`roomId`) REFERENCES `room`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
