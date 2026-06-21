@@ -128,11 +128,6 @@ function Semana5() {
           ))}
         </div>
       </main>
-
-      <footer className="bg-[#001830] h-[83px] text-white text-center content-center py-4 text-xs tracking-widest mt-auto">
-        <p>COPYRIGHT © 2026 - SERRA JUNIOR ENGENHARIA</p>
-      </footer>
-
       {loadingDetail && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <p className="text-white text-lg">Carregando...</p>

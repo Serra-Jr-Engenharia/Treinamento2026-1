@@ -4,6 +4,7 @@ import Semana5 from './pages/Semana5/Semana5';
 import Home from './pages/Home';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 export default function RoutesApp() {
   return (
@@ -14,6 +15,7 @@ export default function RoutesApp() {
         <Route path="/semana4" element={<Semana4 />} />
         <Route path="/semana5" element={<Semana5 />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

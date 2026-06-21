@@ -1,8 +1,7 @@
 import Header from "./components/Header";
 import MemberCard from "./components/MemberCard";
-import Footer from "./components/Footer";
 
-function App() {
+function Semana4() {
   const membros = [
     {
       membro: "Membro 1",
@@ -44,11 +43,8 @@ function App() {
 
         </div>
       </main>
-
-      <Footer />
-
     </div>
   );
 }
 
-export default App;
+export default Semana4;
