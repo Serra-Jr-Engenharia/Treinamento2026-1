@@ -83,14 +83,14 @@ function App() {
                 {activeTab === "search" ? (
                     <>
                         <Search onSearch={handleSearch} onFilterChange={setFilter} />
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full justify-items-center">
                             {filterMovies.map((movie) => (
                                 <MovieCard key={movie.imdbID} name={movie.Title} year={movie.Year} imgUrl={movie.Poster} onClick={() => setSelectedMovie(movie.imdbID)} />
                             ))}
                         </div>
                     </>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full justify-items-center">
                         {Object.keys(reviews).length === 0 ? (
                             <p className="text-center col-span-full text-slate-400 font-medium py-8">Você ainda não avaliou nenhum filme.</p>
                         ) : (

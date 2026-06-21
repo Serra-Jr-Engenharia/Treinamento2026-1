@@ -1,6 +1,6 @@
 function MovieCard({ name, year, imgUrl, onClick }) {
     return (
-        <div onClick={onClick} className="flex flex-col bg-secondary rounded-3xl text-center items-center p-4 gap-2 text-white w-full max-w-55 min-h-90 shadow-lg justify-center">
+        <div onClick={onClick} className="flex flex-col bg-secondary rounded-3xl text-center items-center p-4 gap-2 text-white w-full max-w-55 min-h-90 shadow-lg justify-center cursor-pointer hover:bg-primary">
             <div className="w-full aspect-2/3 bg-[#D9D9D9] rounded-2xl overflow-hidden flex items-center justify-center text-slate-500 font-medium">
                 {imgUrl && imgUrl !== "N/A" ? (
                     <img 
