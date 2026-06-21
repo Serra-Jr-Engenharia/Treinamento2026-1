@@ -15,6 +15,13 @@ import { errorResponseSchema } from "../schemas/globalSchemas.js"
 // 7. PATCH /rooms/:id
 // 8. DELETE /rooms/:id
 
+async function nameValid(nameExists: string): Promise<boolean> {
+    const room = await prisma.room.findUnique({
+        where: { name: nameExists }
+    })
+    return !!room
+}
+
 export const roomController: FastifyPluginAsyncZod = async app => {
 
     app.addHook("onRequest", verifyJWT)
@@ -24,6 +31,7 @@ export const roomController: FastifyPluginAsyncZod = async app => {
             body: RoomSchemas.createRoomBodySchema,
             response: {
                 201: RoomSchemas.roomResponseSchema,
+                400: errorResponseSchema,
                 500: errorResponseSchema
             }
         }
@@ -31,6 +39,11 @@ export const roomController: FastifyPluginAsyncZod = async app => {
         const { name, capacidade, local, descricao } = request.body
 
         try {
+
+            const nameExists = await nameValid(name)
+
+            if (nameExists) return reply.status(400).send({ error: "Esse nome de sala já existe" })
+
             const newRoom = await prisma.room.create({
                 data: {
                     name,
@@ -104,16 +117,16 @@ export const roomController: FastifyPluginAsyncZod = async app => {
     }, async (request, reply) => {
         const { roomId } = request.params
         try {
-            const roomExists = await prisma.room.findUnique({ 
-                where: { id: roomId } 
+            const roomExists = await prisma.room.findUnique({
+                where: { id: roomId }
             })
 
             if (!roomExists) {
                 return reply.status(404).send({ error: "Sala não encontrada" })
             }
 
-            const logs = await prisma.roomLog.findMany({ 
-                where: { roomId } 
+            const logs = await prisma.roomLog.findMany({
+                where: { roomId }
             })
             return reply.status(200).send(logs)
         } catch (error) {
@@ -135,8 +148,8 @@ export const roomController: FastifyPluginAsyncZod = async app => {
     }, async (request, reply) => {
         const { id } = request.params
         try {
-            const room = await prisma.room.findUnique({ 
-                where: { id } 
+            const room = await prisma.room.findUnique({
+                where: { id }
             })
 
             if (!room) {
@@ -157,6 +170,7 @@ export const roomController: FastifyPluginAsyncZod = async app => {
             body: RoomSchemas.createRoomBodySchema,
             response: {
                 200: RoomSchemas.roomResponseSchema,
+                400: errorResponseSchema,
                 404: errorResponseSchema,
                 500: errorResponseSchema
             }
@@ -165,6 +179,11 @@ export const roomController: FastifyPluginAsyncZod = async app => {
         const { id } = request.params as { id: string }
         const { name, capacidade, local, descricao } = request.body
         try {
+
+            const nameExists = await nameValid(name)
+
+            if (nameExists) return reply.status(400).send({ error: "Esse nome de sala já existe" })
+
             const roomExists = await prisma.room.findUnique({
                 where: { id }
             })
@@ -198,6 +217,7 @@ export const roomController: FastifyPluginAsyncZod = async app => {
             body: RoomSchemas.updateRoomsBodySchema,
             response: {
                 200: RoomSchemas.roomResponseSchema,
+                400: errorResponseSchema,
                 404: errorResponseSchema,
                 500: errorResponseSchema
             }
@@ -211,12 +231,23 @@ export const roomController: FastifyPluginAsyncZod = async app => {
         )
 
         try {
+
             const roomExists = await prisma.room.findUnique({
                 where: { id }
             })
 
             if (!roomExists) {
                 return reply.status(404).send({ error: "Sala não encontrada" })
+            }
+
+            if (name) {
+                const nameConflict = await prisma.room.findFirst({
+                    where: {
+                        name,
+                        id: {not: id}
+                    }
+                })
+                if(nameConflict) return reply.status(400).send({error: "Já existe uma sala com esse nome"})
             }
 
             const updatedRoom = await prisma.room.update({
@@ -256,8 +287,8 @@ export const roomController: FastifyPluginAsyncZod = async app => {
             if (!roomToDelete) {
                 return reply.status(404).send({ error: "Sala não encontrada" })
             }
-            await prisma.room.delete({ 
-                where: { id } 
+            await prisma.room.delete({
+                where: { id }
             })
 
             await prisma.roomLog.create({

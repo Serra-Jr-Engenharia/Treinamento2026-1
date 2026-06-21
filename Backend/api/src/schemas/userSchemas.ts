@@ -1,15 +1,14 @@
 import z from "zod"
 
 export const createBodySchema = z.object({
-    name: z.string(),
-    email: z.email(),
-    password: z.string().min(8)
+    name: z.string("O nome de usuário é obrigatório"),
+    email: z.email("O email é obrigatório"),
+    password: z.string().min(8, "A senha deve possuir no mínimo 8 caracteres")
 })
 
 export const createResponseSchema = z.object({
     name: z.string(),
-    email: z.email(),
-    password: z.string()
+    email: z.email()
 })
 
 export const loginBodySchema = z.object({
@@ -39,6 +38,5 @@ export const updatePasswordBodySchema = z.object({
 export const updatePasswordResponseSchema = z.object({
     id: z.string(),
     name: z.string(),
-    email: z.email(),
-    password: z.string()
+    email: z.email()
 })

@@ -3,6 +3,7 @@ import { roomController } from "./routes/RoomController.js"
 import { serializerCompiler, validatorCompiler, type ZodTypeProvider, hasZodFastifySchemaValidationErrors } from "fastify-type-provider-zod"
 import { userController } from "./routes/UserController.js"
 import fastifyJwt from "@fastify/jwt"
+import { reservationController } from "./routes/ReservationController.js"
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -11,6 +12,7 @@ app.setValidatorCompiler(validatorCompiler)
 
 app.register(roomController)
 app.register(userController)
+app.register(reservationController)
 
 app.setErrorHandler((error, _, reply) => {
     if (hasZodFastifySchemaValidationErrors(error)) {
