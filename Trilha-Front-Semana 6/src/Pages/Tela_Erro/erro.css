@@ -1,0 +1,22 @@
+.erro {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.erro h1 {
+  font-size: 80px;
+  color: #ff6600;
+  margin-bottom: 10px;
+}
+
+.erro p {
+  margin-bottom: 20px;
+}
+
+.erro a {
+  text-decoration: none;
+  background-color: #ff6600;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+}

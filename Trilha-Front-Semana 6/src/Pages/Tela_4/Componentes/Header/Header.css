@@ -1,0 +1,30 @@
+.titulo {
+  display: flex;
+  background-color: #ff6600;
+  flex-direction: row;
+  height: 97px;
+  align-items: center;
+}
+
+#logoserra {
+  width: 58px;
+  height: 57px;
+  margin-left: 23px;
+  margin-right: 25px;
+}
+
+.EquipeSerraJr {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.LinkFilmes{
+
+font-size: 18px;
+text-decoration: underline;
+color: #FFFFFF;
+margin-left: auto;
+margin-right: 40px;
+
+}

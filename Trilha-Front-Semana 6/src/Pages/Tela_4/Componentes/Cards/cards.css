@@ -1,0 +1,52 @@
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.BoxTop {
+  margin-bottom: -28px;
+  height: 64px;
+  width: 187px;
+  border-radius: 22px;
+  background-color: #ff6600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+  margin-left: 196px;
+}
+
+.BoxTop p {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.BoxBotton {
+  display: flex;
+  z-index: 1;
+  height: 277px;
+  width: 336px;
+  border-radius: 22px;
+  background-color: #001830;
+  margin-left: 122px;
+  margin-right: 122px;
+  justify-content: center;
+  align-items: center;
+}
+
+.BoxBotton ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 77px;
+  margin-bottom: 60px;
+}
+
+.BoxBotton li {
+  margin-bottom: 16px;
+}

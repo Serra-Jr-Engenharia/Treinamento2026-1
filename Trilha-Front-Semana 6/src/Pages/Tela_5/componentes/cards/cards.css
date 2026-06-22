@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.BoxCenter {
+  margin-top: 16px;
+  display: flex;
+  width: 194px;
+  height: 229px;
+  border-radius: 18px;
+  justify-content: center;
+}
+
+.BoxCenter p {
+  margin-top: 84px;
+}
+
+.BoxCenter img {
+  width: 194px;
+  height: 229px;
+  border-radius: 18px;
+}
+
+.BoxFora {
+  display: flex;
+  width: 242px;
+  height: 318px;
+  background-color: #ff6600;
+  border-radius: 22px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.tituloCard {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 3px;
+  height: 50px;
+  text-align: center;
+  overflow-wrap: break-word;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.ano {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
