@@ -2,7 +2,6 @@ import z from "zod";
 
 export const reservationBodySchema = z.object({
     roomId: z.string(),
-    userId: z.string(),
     startTime: z.iso.datetime(),
     endTime: z.iso.datetime(),
 })

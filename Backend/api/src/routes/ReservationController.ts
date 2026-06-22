@@ -33,9 +33,10 @@ async function checkCollision(
 
 export const reservationController: FastifyPluginAsyncZod = async app => {
 
-    // app.addHook("onRequest", verifyJWT)
+    app.addHook("onRequest", verifyJWT)
 
     app.post("/rooms/reservation", {
+        onRequest: [verifyJWT],
         schema: {
             body: ReservationsSchema.reservationBodySchema,
             response: {
@@ -45,10 +46,15 @@ export const reservationController: FastifyPluginAsyncZod = async app => {
             }
         }
     }, async (request, reply) => {
-        const { roomId, userId, startTime, endTime } = request.body
+        const { roomId, startTime, endTime } = request.body
 
         const start = new Date(startTime)
         const end = new Date(endTime)
+
+        const user = request.user as {
+            id: string
+        }
+        const userID = user.id
 
         try {
             const hasCollision = await checkCollision(roomId, start, end)
@@ -58,7 +64,7 @@ export const reservationController: FastifyPluginAsyncZod = async app => {
             const reservation = await prisma.reservation.create({
                 data: {
                     roomId,
-                    userId,
+                    userId: userID,
                     startTime: start,
                     endTime: end
                 }
