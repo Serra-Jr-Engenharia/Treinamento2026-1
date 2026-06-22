@@ -6,15 +6,6 @@ import * as RoomSchemas from "../schemas/roomSchemas.js"
 import { errorResponseSchema } from "../schemas/globalSchemas.js"
 
 
-// 1. POST /rooms
-// 2. GET /rooms
-// 3. GET /rooms/logs
-// 4. GET /rooms/logs/:roomId
-// 5. GET /rooms/:id
-// 6. PUT /rooms/:id
-// 7. PATCH /rooms/:id
-// 8. DELETE /rooms/:id
-
 async function nameValid(nameExists: string): Promise<boolean> {
     const room = await prisma.room.findUnique({
         where: { name: nameExists }
@@ -28,6 +19,10 @@ export const roomController: FastifyPluginAsyncZod = async app => {
 
     app.post('/rooms', {
         schema: {
+            tags: ["Rooms"],
+            summary: "Cria uma Nova Sala",
+            description: "",
+
             body: RoomSchemas.createRoomBodySchema,
             response: {
                 201: RoomSchemas.roomResponseSchema,
@@ -73,6 +68,10 @@ export const roomController: FastifyPluginAsyncZod = async app => {
 
     app.get('/rooms', {
         schema: {
+            tags: ["Rooms"],
+            summary: "Retorna Todas as Salas",
+            description: "",
+
             response: {
                 200: RoomSchemas.getAllRoomsResponseSchema,
                 500: errorResponseSchema
@@ -89,6 +88,10 @@ export const roomController: FastifyPluginAsyncZod = async app => {
 
     app.get('/rooms/logs', {
         schema: {
+            tags: ["Rooms Logs"],
+            summary: "Retorna Todas as Logs",
+            description: "",
+
             response: {
                 200: RoomSchemas.getRoomsLogResponseSchema,
                 500: errorResponseSchema
@@ -105,6 +108,10 @@ export const roomController: FastifyPluginAsyncZod = async app => {
 
     app.get('/rooms/logs/:roomId', {
         schema: {
+            tags: ["Rooms Logs"],
+            summary: "Retorna Todas as Logs por Sala",
+            description: "",
+
             params: z.object({
                 roomId: z.string()
             }),
@@ -136,6 +143,10 @@ export const roomController: FastifyPluginAsyncZod = async app => {
 
     app.get('/rooms/:id', {
         schema: {
+            tags: ["Rooms"],
+            summary: "Retorna a Sala pelo ID",
+            description: "",
+
             params: z.object({
                 id: z.string()
             }),
@@ -164,6 +175,10 @@ export const roomController: FastifyPluginAsyncZod = async app => {
 
     app.put('/rooms/:id', {
         schema: {
+            tags: ["Rooms"],
+            summary: "Atualização Total da Sala",
+            description: "",
+
             params: z.object({
                 id: z.string()
             }),
@@ -211,6 +226,10 @@ export const roomController: FastifyPluginAsyncZod = async app => {
 
     app.patch('/rooms/:id', {
         schema: {
+            tags: ["Rooms"],
+            summary: "Atualização Parcial da Sala",
+            description: "",
+
             params: z.object({
                 id: z.string()
             }),
@@ -270,6 +289,10 @@ export const roomController: FastifyPluginAsyncZod = async app => {
 
     app.delete('/rooms/:id', {
         schema: {
+            tags: ["Rooms"],
+            summary: "Deleta uma Sala pelo ID",
+            description: "",
+
             params: z.object({
                 id: z.string()
             }),

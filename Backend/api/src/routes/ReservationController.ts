@@ -5,14 +5,6 @@ import { prisma } from "../lib/prisma.js";
 import { errorResponseSchema, messageResponseSchema } from "../schemas/globalSchemas.js";
 import z from "zod";
 
-// 1. POST /rooms/reservation
-// 2. GET /users/reservation/:userId
-// 3. PATCH /rooms/reservation/:id
-// 4. DELETE /rooms/reservation/:id
-// 5. GET /rooms/reservation (Retorna todas as reservas existentes)
-// 6. GET /rooms/reservation/:roomId
-
-
 async function checkCollision(
     roomId: string,
     startTime: Date,
@@ -38,6 +30,10 @@ export const reservationController: FastifyPluginAsyncZod = async app => {
     app.post("/rooms/reservation", {
         onRequest: [verifyJWT],
         schema: {
+            tags: ["Reservation"],
+            summary: "Cria uma Nova Reserva",
+            description: "",
+
             body: ReservationsSchema.reservationBodySchema,
             response: {
                 201: ReservationsSchema.reservationResponseSchema,
@@ -78,6 +74,10 @@ export const reservationController: FastifyPluginAsyncZod = async app => {
 
     app.get("/users/reservation/:userId", {
         schema: {
+            tags: ["Reservation"],
+            summary: "Retorna por Usuário",
+            description: "Retorna Todas as Reservas de um Usuário",
+
             params: ReservationsSchema.userReservationsParamsSchema,
             response: {
                 200: ReservationsSchema.userReservationResponseSchema,
@@ -107,6 +107,10 @@ export const reservationController: FastifyPluginAsyncZod = async app => {
 
     app.patch("/rooms/reservation/:id", {
         schema: {
+            tags: ["Reservation"],
+            summary: "Atualiza uma Reserva",
+            description: "Atualiza uma Reserva pelo ID da Reserva",
+
             params: ReservationsSchema.idReservationsParamsSchema,
             body: ReservationsSchema.patchReservationBodySchema,
             response: {
@@ -154,6 +158,10 @@ export const reservationController: FastifyPluginAsyncZod = async app => {
 
     app.delete("/rooms/reservation/:id", {
         schema: {
+            tags: ["Reservation"],
+            summary: "Deleta uma Reserva",
+            description: "",
+
             params: ReservationsSchema.idReservationsParamsSchema,
             response: {
                 200: messageResponseSchema,
@@ -182,6 +190,10 @@ export const reservationController: FastifyPluginAsyncZod = async app => {
 
     app.get("/rooms/reservation", {
         schema: {
+            tags: ["Reservation"],
+            summary: "Retorna Todas as Reservas",
+            description: "",
+
             response: {
                 200: z.array(
                     z.object({
@@ -201,6 +213,10 @@ export const reservationController: FastifyPluginAsyncZod = async app => {
 
     app.get("/rooms/reservation/:roomId", {
         schema: {
+            tags: ["Reservation"],
+            summary: "Retorna por Sala",
+            description: "Retorna Todas as Reservas de uma Sala",
+
             params: ReservationsSchema.roomReservationsParamsSchema,
             response: {
                 200: ReservationsSchema.roomReservationResponseSchema,

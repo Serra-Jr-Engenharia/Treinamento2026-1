@@ -5,15 +5,14 @@ import * as UserSchemas from "../schemas/userSchemas.js";
 import { errorResponseSchema } from "../schemas/globalSchemas.js";
 import { verifyJWT } from "../hooks/verifyJWT.js";
 
-// 1. POST /register
-// 2. POST /login
-// 3. GET /user
-// 4. PATCH /user/password
-
 export const userController: FastifyPluginAsyncZod = async app => {
 
     app.post("/register", {
         schema: {
+            tags: ["User"],
+            summary: "Registro do Usuário",
+            description: "",
+
             body: UserSchemas.createBodySchema,
             response: {
                 201: UserSchemas.createResponseSchema,
@@ -48,6 +47,10 @@ export const userController: FastifyPluginAsyncZod = async app => {
 
     app.post("/login", {
         schema: {
+            tags: ["User"],
+            summary: "Login do Usuário",
+            description: "",
+
             body: UserSchemas.loginBodySchema,
             response: {
                 201: UserSchemas.loginResponseSchema,
@@ -83,6 +86,10 @@ export const userController: FastifyPluginAsyncZod = async app => {
     app.get("/user", {
         onRequest: [verifyJWT],
         schema: {
+            tags: ["User"],
+            summary: "Retorna as informações do Usuário",
+            description: "",
+
             response: {
                 200: UserSchemas.userResponseSchema,
                 400: errorResponseSchema
@@ -100,6 +107,10 @@ export const userController: FastifyPluginAsyncZod = async app => {
     app.patch("/user/password", {
         onRequest: [verifyJWT],
         schema: {
+            tags: ["User"],
+            summary: "Atualização de Senha",
+            description: "",
+
             body: UserSchemas.updatePasswordBodySchema,
             response: {
                 200: UserSchemas.updatePasswordResponseSchema,

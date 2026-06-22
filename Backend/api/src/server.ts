@@ -1,14 +1,31 @@
 import fastify from "fastify"
 import { roomController } from "./routes/RoomController.js"
-import { serializerCompiler, validatorCompiler, type ZodTypeProvider, hasZodFastifySchemaValidationErrors } from "fastify-type-provider-zod"
+import { serializerCompiler, validatorCompiler, type ZodTypeProvider, hasZodFastifySchemaValidationErrors, jsonSchemaTransform} from "fastify-type-provider-zod"
 import { userController } from "./routes/UserController.js"
 import fastifyJwt from "@fastify/jwt"
 import { reservationController } from "./routes/ReservationController.js"
+import { fastifySwagger } from "@fastify/swagger"
+import ScalarApiReference from "@scalar/fastify-api-reference"
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
+
+app.register(fastifySwagger, {
+	openapi: {
+		info: {
+			title: 'API Trainee',
+			description: 'API for SerraJr Trainee',
+			version: '1.0.0',
+		},
+	},
+	transform: jsonSchemaTransform,
+})
+
+app.register(ScalarApiReference, {
+	routePrefix: '/docs',
+})
 
 app.register(roomController)
 app.register(userController)
@@ -36,5 +53,6 @@ app.register(fastifyJwt, {
 })
 
 app.listen({ port: 3000 }).then(() => {
-    console.log('Servidor rodando na porta 3000')
+    console.log('Servidor rodando em http://localhost:3000')
+    console.log('Documentação em http://localhost:3000/docs')
 })
