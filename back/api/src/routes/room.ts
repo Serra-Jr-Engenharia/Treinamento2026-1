@@ -10,6 +10,15 @@ const salaSchema = z.object({
 });
 
 export async function roomRoutes(app: FastifyInstance) {
+
+  app.addHook("onRequest", async (req, res) => {
+    try {
+      await req.jwtVerify();
+    } catch (error) {
+      return res.status(401).send({ error: "Token inválido ou ausente" });
+    }
+  });
+
   app.post("/room", async (request, reply) => {
     const result = salaSchema.safeParse(request.body);
     if (!result.success) {

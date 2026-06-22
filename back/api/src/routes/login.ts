@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { prisma } from "../lib/prisma";
 import { z } from "zod";
-import { verifyPassword } from "../utils/hash";
+import { comparePassword } from "../utils/hash";
 import { hashPassword } from "../utils/hash";
 
 
@@ -24,7 +24,7 @@ export function login(app: FastifyInstance) {
             return res.status(400).send({message:"User not found"});
         }
 
-        const isPassword = await verifyPassword(password,user.password);
+        const isPassword = await comparePassword(password,user.password);
 
         if (!isPassword) {
             return res.status(400).send({ message: "Invalid Password" });
