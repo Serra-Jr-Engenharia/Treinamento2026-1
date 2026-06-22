@@ -1,21 +1,19 @@
-# Node modules
 node_modules/
-
-# Environment files
-.env
-.env.local
-
-# Build output
 dist/
-
-# Editor folders
+build/
+.env
+.env.*
+!.env.example
+*.db
+*.db-journal
 .vscode/
+!.vscode/extensions.json
 .idea/
-
-# OS files
 .DS_Store
-
-# Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+.tsbuildinfo
+coverage/

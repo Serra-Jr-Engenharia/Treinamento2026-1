@@ -1,25 +1,42 @@
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL") 
+  provider = "mysql" // Confirme se está usando mysql. Se for postgresql ou sqlite, mude aqui.
+  url      = env("DATABASE_URL")
 }
 
+
 model User {
-  id            String   @id @default(uuid())
-  email         String   @unique
+  id            String        @id @default(uuid())
+  email         String        @unique
   password_hash String
-  criado_em     DateTime @default(now())
+  
+  reservations  Reservation[]
 }
 
 model Room {
-  id            String   @id @default(uuid())
-  nome          String
-  capacidade    Int
-  local         String   
-  descricao     String   
-  criado_em     DateTime @default(now())
-  atualizado_em DateTime @updatedAt
+  id           String        @id @default(uuid())
+  nome         String
+  capacidade   Int
+  local        String
+  descricao    String
+  
+  reservations Reservation[]
+}
+
+model Reservation {
+  id        String   @id @default(uuid())
+  startTime DateTime 
+  endTime   DateTime 
+  userId    String
+  roomId    String
+
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  room Room @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@map("reservations") 
 }
