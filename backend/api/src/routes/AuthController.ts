@@ -42,7 +42,7 @@ export default async function authController(
       nome: user.nome,
       email: user.email
     })
-  }) // <-- fecha o /register
+  }) 
 
   app.post('/login', async (request, reply) => {
     const { email, senha } =
