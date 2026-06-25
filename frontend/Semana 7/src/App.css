@@ -1,0 +1,198 @@
+html,
+body,
+#root,
+.page,
+.container {
+  background: white !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.header {
+  height: 97px;
+  background: #001830;
+
+  display: flex;
+  align-items: center;
+}
+
+.header h1 {
+  color: white;
+  font-size: 36px;
+  font-weight: 700;
+
+  margin-left: 106px;
+}
+
+
+main {
+  flex: 1;
+
+  padding-top: 32px;
+  padding-bottom: 44px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.form {
+  width: 1153px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form input {
+  height: 48px;
+
+  border: 1px solid #ff6600;
+  border-radius: 22px;
+
+  padding: 0 22px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  outline: none;
+}
+
+.form input::placeholder {
+  color: #8686868c;
+}
+
+.form button {
+  width: 266px;
+  height: 48px;
+
+  margin: 16px auto 28px;
+
+  border: none;
+  border-radius: 22px;
+
+  background: #ff6600;
+  color: white;
+
+  font-size: 24px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+
+.recipes-grid {
+  width: 1153px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 18px 44px;
+}
+
+
+.recipe-card {
+  height: 91px;
+
+  background: #ff6600;
+  border-radius: 22px;
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  text-align: center;
+}
+
+.recipe-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.recipe-card p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.recipe-card span {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.delete-btn {
+  position: absolute;
+
+  right: 18px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  background: transparent;
+  border: none;
+
+  color: white;
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+
+.footer {
+  height: 83px;
+
+  background: #001830;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
+@media (max-width: 1200px) {
+  .form,
+  .recipes-grid {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    margin-left: 24px;
+    font-size: 28px;
+  }
+
+  .recipes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form button {
+    width: 100%;
+  }
+}
