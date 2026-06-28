@@ -1,7 +1,7 @@
 import { app } from './app.ts'
 
-app.listen({ port:3030 }).then(() =>{
-    console.log('🚀 Servidor rodando em http://localhost:3030.')
+app.listen({ port:3333, host: '0.0.0.0' }).then(() =>{
+    console.log('🚀 Servidor rodando em http://localhost:3333.')
 })
 
 

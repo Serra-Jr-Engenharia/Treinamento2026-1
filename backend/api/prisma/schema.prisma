@@ -25,11 +25,13 @@ model User {
 }
 
 model Reservation {
-  id       String   @id @default(uuid())
-  dataHora DateTime
-  userId   String
-  roomId   String
+  id      String   @id @default(uuid())
+  inicio  DateTime
+  fim     DateTime
+  duracao Int
+  userId  String
+  roomId  String
 
-  user User @relation(fields: [userId], references: [id])
-  room Room @relation(fields: [roomId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  room Room @relation(fields: [roomId], references: [id], onDelete: Cascade)
 }

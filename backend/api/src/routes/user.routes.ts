@@ -27,8 +27,11 @@ export async function userRoutes(app: FastifyInstance) {
     try {
       const user = await UserService.criar(request.body)
       return reply.status(201).send({ message: 'Usuário criado!', id: user.id })
-    } catch (error: any) {
-      return reply.status(400).send({ error: error.message })
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return reply.status(400).send({ error: error.message })
+      }
+      return reply.status(500).send({ error: 'Erro interno no servidor.' })
     }
   })
 
@@ -56,8 +59,11 @@ export async function userRoutes(app: FastifyInstance) {
         const userId = (request.user as { sub: string }).sub
         await UserService.atualizarSenha(userId, request.body.senhaAntiga, request.body.senhaNova)
         return reply.status(200).send({ message: 'Senha atualizada com sucesso!' })
-      } catch (error: any) {
-        return reply.status(400).send({ error: error.message })
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          return reply.status(400).send({ error: error.message })
+        }
+        return reply.status(500).send({ error: 'Erro interno no servidor.' })
       }
     })
   })

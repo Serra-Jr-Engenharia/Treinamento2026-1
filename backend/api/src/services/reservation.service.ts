@@ -2,17 +2,30 @@ import { prisma } from "../lib/prisma.js"
 
 export const ReservationService = {
 
-  async criar(userId: string, roomId: string, dataHoraStr: string) {
-    const dataHora = new Date(dataHoraStr)
+  async criar(userId: string, roomId: string, inicioStr: string, fimStr: string) {
+    const inicio = new Date(inicioStr)
+    const fim = new Date(fimStr)
+
+    const duracao = Math.round((fim.getTime() - inicio.getTime()) / 60000)
+
+    if (duracao <= 0) {
+      throw new Error("O horário de fim deve ser posterior ao horário de início.")
+    }
 
     const conflito = await prisma.reservation.findFirst({
-      where: { roomId, dataHora }
+      where: { 
+        roomId,
+        AND: [
+          { inicio: { lt: fim } },
+          { fim: { gt: inicio } }
+        ]
+      }
     })
 
-    if (conflito) throw new Error("Esta sala já está reservada para este dia e horário.")
+    if (conflito) throw new Error("Esta sala já está reservada para este período.")
 
     return prisma.reservation.create({
-      data: { userId, roomId, dataHora }
+      data: { userId, roomId, inicio, fim, duracao }
     })
   },
 
@@ -32,23 +45,36 @@ export const ReservationService = {
     return prisma.reservation.delete({ where: { id } })
   },
 
-  async alterar(id: string, userId: string, novaDataHoraStr: string) {
+  async alterar(id: string, userId: string, novoInicioStr: string, novoFimStr: string) {
     const reserva = await prisma.reservation.findUnique({ where: { id } })
     
     if (!reserva) throw new Error("Reserva não encontrada.")
     if (reserva.userId !== userId) throw new Error("Acesso negado.")
 
-    const novaDataHora = new Date(novaDataHoraStr)
-    
+    const inicio = new Date(novoInicioStr)
+    const fim = new Date(novoFimStr)
+    const duracao = Math.round((fim.getTime() - inicio.getTime()) / 60000)
+
+    if (duracao <= 0) {
+      throw new Error("O horário de fim deve ser posterior ao horário de início.")
+    }
+
     const conflito = await prisma.reservation.findFirst({
-      where: { roomId: reserva.roomId, dataHora: novaDataHora }
+      where: { 
+        roomId: reserva.roomId,
+        id: { not: id },
+        AND: [
+          { inicio: { lt: fim } },
+          { fim: { gt: inicio } }
+        ]
+      }
     })
 
     if (conflito) throw new Error("A sala já possui outra reserva neste novo horário.")
 
     return prisma.reservation.update({
       where: { id },
-      data: { dataHora: novaDataHora }
+      data: { inicio, fim, duracao }
     })
   }
 }

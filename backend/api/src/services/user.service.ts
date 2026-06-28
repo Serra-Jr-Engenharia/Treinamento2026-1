@@ -1,8 +1,9 @@
 import { prisma } from "../lib/prisma.js"
+import { Prisma } from "@prisma/client" 
 import bcrypt from "bcryptjs"
 
 export const UserService = {
-  async criar(data: any) {
+  async criar(data: Prisma.UserCreateInput) { 
     const userExists = await prisma.user.findUnique({ where: { email: data.email } })
     if (userExists) throw new Error("Usuário já cadastrado com este e-mail.")
 
