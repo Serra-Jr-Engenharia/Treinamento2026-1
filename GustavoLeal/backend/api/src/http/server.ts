@@ -30,4 +30,9 @@ app.setErrorHandler((error, request, reply) => {
   })
 })
 
-app.listen({ port: 3333 })
+app.listen({
+  port: 3333,
+  host: '0.0.0.0'
+}).then(() => {
+  console.log('🚀 API rodando na porta 3333')
+})

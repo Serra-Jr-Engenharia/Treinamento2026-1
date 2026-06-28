@@ -1,5 +1,5 @@
 -- AlterTable
-ALTER TABLE `room` ALTER COLUMN `updatedAt` DROP DEFAULT;
+ALTER TABLE `Room` ALTER COLUMN `updatedAt` DROP DEFAULT;
 
 -- CreateTable
 CREATE TABLE `Reservation` (
