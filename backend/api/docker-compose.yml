@@ -1,0 +1,32 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "At126(264)"
+      MYSQL_DATABASE: Rooms
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pAt126(264)"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  api:
+    build: .
+    ports:
+      - "3333:3333"
+    environment:
+      DATABASE_URL: "mysql://root:At126%28264%29@db:3306/Rooms"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "npx prisma migrate deploy && npm run start"
+    restart: on-failure
+
+volumes:
+  mysql_data:
