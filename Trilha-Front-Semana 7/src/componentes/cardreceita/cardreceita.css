@@ -1,0 +1,47 @@
+.Card {
+  width: 558px;
+  height: 91px;
+  background-color: #ff6600;
+  border-radius: 22px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Conteudo {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  flex: 1;
+}
+
+.Lista li {
+  color: white;
+  font-family: "Poppins";
+}
+
+.Receita {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.Ingredientes,
+.Tempo {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.Lixo {
+  width: 18px;
+  height: 20px;
+  cursor: pointer;
+}

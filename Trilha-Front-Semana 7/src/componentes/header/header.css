@@ -1,0 +1,23 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.header {
+  display: flex;
+  background-color: #001830;
+  color: #ffffff;
+  align-items: center;
+  height: 97px;
+  margin-bottom: 32px;
+}
+
+header p {
+  margin-left: 115px;
+  font-size: 36px;
+  font-weight: bold;
+  font-family:"Poppins" ;
+}

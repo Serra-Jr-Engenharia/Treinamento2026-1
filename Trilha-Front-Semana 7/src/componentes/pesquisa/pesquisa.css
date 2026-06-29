@@ -1,0 +1,37 @@
+
+.pesquisar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#barrapesquisa {
+  margin-top: 19px;
+  height: 48px;
+  border-radius: 22px;
+  border: 2px solid #ff6600;
+  border-color: #ff6600;
+  width: 1153px;
+  padding: 15px;
+}
+
+#barrapesquisa::placeholder {
+  margin-top: 48px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+
+}
+
+#botao {
+  font-weight: 500;
+  margin-left: 20px;
+  height: 48px;
+  width: 266px;
+  font-size: 24px;
+  background-color: #ff6600;
+  color: #ffffff;
+  font-weight: 9000;
+  border-radius: 22px;
+  cursor:pointer;
+}
