@@ -52,7 +52,7 @@ app.register(fastifyJwt, {
     secret: jwtToken
 })
 
-app.listen({ port: 3000 }).then(() => {
+app.listen({ port: 3000, host: '0.0.0.0' }).then(() => {
     console.log('Servidor rodando em http://localhost:3000')
     console.log('Documentação em http://localhost:3000/docs')
 })
