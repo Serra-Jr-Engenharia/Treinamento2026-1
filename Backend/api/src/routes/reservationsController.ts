@@ -21,19 +21,19 @@ export const reservationsController: FastifyPluginAsyncZod = async (app) => {
       body: z.object({
         roomId: z.number(),
         userId: z.number(),
-        date: z.string()
+        data: z.string()
       })
     }
   }, async (request, reply) => {
 
-    const { roomId, userId, date } = request.body;
+    const { roomId, userId, data } = request.body;
 
     try {
 
       const reservationExists = await prisma.reservation.findFirst({
         where: {
           roomId,
-          date: new Date(date)
+          data: new Date(data)
         }
       });
 
@@ -47,7 +47,7 @@ export const reservationsController: FastifyPluginAsyncZod = async (app) => {
         data: {
           roomId,
           userId,
-          date: new Date(date)
+          data: new Date(data)
         }
       });
 
@@ -106,13 +106,13 @@ export const reservationsController: FastifyPluginAsyncZod = async (app) => {
         id: z.string()
       }),
       body: z.object({
-        date: z.string()
+        data: z.string()
       })
     }
   }, async (request, reply) => {
 
     const reservationId = Number(request.params.id);
-    const { date } = request.body;
+    const { data } = request.body;
 
     try {
 
@@ -131,7 +131,7 @@ export const reservationsController: FastifyPluginAsyncZod = async (app) => {
       const conflict = await prisma.reservation.findFirst({
         where: {
           roomId: reservation.roomId,
-          date: new Date(date),
+          data: new Date(data),
           NOT: {
             id: reservationId
           }
@@ -149,7 +149,7 @@ export const reservationsController: FastifyPluginAsyncZod = async (app) => {
           id: reservationId
         },
         data: {
-          date: new Date(date)
+          data: new Date(data)
         }
       });
 
@@ -190,6 +190,7 @@ export const reservationsController: FastifyPluginAsyncZod = async (app) => {
       });
 
     } catch {
+
 
       return reply.status(500).send({
         error: "Erro ao cancelar reserva."

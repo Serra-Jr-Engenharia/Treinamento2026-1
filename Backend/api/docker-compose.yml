@@ -1,0 +1,37 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_backend
+    restart: always
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: trilha-backend
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: .
+    container_name: fastify_backend
+
+    depends_on:
+      - mysql
+
+    ports:
+      - "3333:3333"
+
+    environment:
+      DATABASE_URL: mysql://root:root@mysql:3306/trilha-backend
+
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+    command: sh -c "npm install && npx prisma db push && npm run dev"
+
+volumes:
+  mysql_data:

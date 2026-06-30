@@ -20,6 +20,9 @@ app.get('/', () => {
 app.register(roomsController)
 app.register(reservationsController)
 
-app.listen({ port: 3333 }, () => {
-  console.log('O servidor ta rodando')
+app.listen({
+  port: 3333,
+  host: "0.0.0.0"
+}, () => {
+  console.log("O servidor ta rodando")
 })
