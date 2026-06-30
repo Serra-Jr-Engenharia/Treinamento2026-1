@@ -8,16 +8,32 @@ datasource db {
 }
 
 model Room {
-  id         Int    @id @default(autoincrement())
-  nome       String
-  capacidade Int
-  local      String
-  descricao  String
+  id           Int           @id @default(autoincrement())
+  nome         String
+  capacidade   Int
+  local        String
+  descricao    String
+
+  reservations Reservation[]
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  nome     String
-  email    String @unique
-  password String
+  id           Int           @id @default(autoincrement())
+  nome         String
+  email        String        @unique
+  password     String
+
+  reservations Reservation[]
+}
+
+model Reservation {
+  id      Int      @id @default(autoincrement())
+
+  data    DateTime
+
+  userId  Int
+  roomId  Int
+
+  user User @relation(fields: [userId], references: [id])
+  room Room @relation(fields: [roomId], references: [id])
 }

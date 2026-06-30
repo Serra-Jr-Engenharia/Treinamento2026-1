@@ -2,6 +2,7 @@ import fastify from 'fastify'
 import fastifyJwt from '@fastify/jwt'
 import { roomsController } from './routes/roomsController.js'
 import { serializerCompiler, validatorCompiler, ZodTypeProvider } from "fastify-type-provider-zod"
+import { reservationsController } from './routes/reservationsController.js'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -17,6 +18,7 @@ app.get('/', () => {
 })
 
 app.register(roomsController)
+app.register(reservationsController)
 
 app.listen({ port: 3333 }, () => {
   console.log('O servidor ta rodando')
